@@ -10,10 +10,13 @@ public:
 	~TileMap();
 	void draw();
 	void onMouseClick(double x, double y);
+	void onKeyboardClick(int direction);
 private:
 	Tile* tiles[NUMBER_OF_TILES_VERTICALLY][NUMBER_OF_TILES_HORIZONTALLY];
 	float defaultTileHeight;
 	float defaultTileWidth;
 	Tile* selectedTile;
+	glm::vec4 lastSelectedTileColor;
+	glm::vec2 selectedTilePosition;
 };
 

@@ -17,6 +17,10 @@ TileMap::TileMap() {
 			this->tiles[i][j] = new Tile(this->defaultTileHeight, this->defaultTileWidth, x, y, color);
 		}
 	}
+	this->selectedTilePosition = glm::vec2(0, 0);
+	this->selectedTile = this->tiles[0][0];
+	this->lastSelectedTileColor = this->selectedTile->getColor();
+	this->selectedTile->setColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 }
 
 TileMap::~TileMap() {}
@@ -34,7 +38,7 @@ glm::vec2 tileWalking(int r, int c, int direction) {
 		case 1:
 			return glm::vec2(r - 1, c + 2);
 		case 2:
-			return glm::vec2(r - 1, c - 2);
+			return glm::vec2(r + 1, c - 2);
 		case 3:
 			return glm::vec2(r - 1, c);
 		case 4:
@@ -111,12 +115,35 @@ void TileMap::onMouseClick(double x, double y) {
 	}
 	r = int(values.x);
 	c = int(values.y);
-
 	if (r < NUMBER_OF_TILES_VERTICALLY && c < NUMBER_OF_TILES_HORIZONTALLY && r >= 0 && c >= 0) {
+		this->selectedTilePosition = glm::vec2(r, c);
+		if (this->selectedTile != nullptr) {
+			this->selectedTile->setColor(this->lastSelectedTileColor);
+		}
 		this->selectedTile = this->tiles[r][c];
-		this->selectedTile->setColor(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
+		this->lastSelectedTileColor = this->selectedTile->getColor();
+		this->selectedTile->setColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 	}
 }
+
+
+void TileMap::onKeyboardClick(int direction) {
+	int r = this->selectedTilePosition.x;
+	int c = this->selectedTilePosition.y;
+	glm::vec2 values = tileWalking(r, c, direction);
+	r = int(values.x);
+	c = int(values.y);
+	if (r < NUMBER_OF_TILES_VERTICALLY && c < NUMBER_OF_TILES_HORIZONTALLY && r >= 0 && c >= 0) {
+		this->selectedTilePosition = glm::vec2(r, c);
+		if (this->selectedTile != nullptr) {
+			this->selectedTile->setColor(this->lastSelectedTileColor);
+		}
+		this->selectedTile = this->tiles[r][c];
+		this->lastSelectedTileColor = this->selectedTile->getColor();
+		this->selectedTile->setColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+	}
+}
+
 
 void TileMap::draw() {
 	for (int i = 0; i < this->NUMBER_OF_TILES_VERTICALLY; i++) {
@@ -124,5 +151,4 @@ void TileMap::draw() {
 			this->tiles[i][j]->draw();
 		}
 	}
-
 }

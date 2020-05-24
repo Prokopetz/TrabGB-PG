@@ -1,15 +1,2 @@
-﻿  TileMap.cpp
-C:\Users\Proko\Desktop\TrabGA\TrabGA\TileMap.cpp(57,8): warning C4244: 'inicializando': conversão de 'double' para 'int', possível perda de dados
-C:\Users\Proko\Desktop\TrabGA\TrabGA\TileMap.cpp(58,8): warning C4244: 'inicializando': conversão de 'double' para 'int', possível perda de dados
-C:\Users\Proko\Desktop\TrabGA\TrabGA\TileMap.cpp(78,43): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGA\TrabGA\TileMap.cpp(78,32): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGA\TrabGA\TileMap.cpp(79,39): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGA\TrabGA\TileMap.cpp(79,28): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGA\TrabGA\TileMap.cpp(80,43): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGA\TrabGA\TileMap.cpp(80,32): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGA\TrabGA\TileMap.cpp(83,43): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGA\TrabGA\TileMap.cpp(83,32): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGA\TrabGA\TileMap.cpp(84,43): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGA\TrabGA\TileMap.cpp(84,32): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGA\TrabGA\TileMap.cpp(52): warning C4715: 'tileWalking': nem todos os caminhos de controle retornam um valor
+﻿  GameMain.cpp
   TrabGA.vcxproj -> C:\Users\Proko\Desktop\TrabGA\Debug\TrabGA.exe
