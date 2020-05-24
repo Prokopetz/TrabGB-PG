@@ -1,0 +1,25 @@
+﻿  Game.cpp
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\GameObject.h(6,10): fatal error C1083: Não é possível abrir arquivo incluir: 'gl/glew.h': No such file or directory
+  GameMain.cpp
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\GameMain.cpp(2,10): fatal error C1083: Não é possível abrir arquivo incluir: 'GL/glew.h': No such file or directory
+  GameObject.cpp
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\GameObject.h(6,10): fatal error C1083: Não é possível abrir arquivo incluir: 'gl/glew.h': No such file or directory
+  lodepng.cpp
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(367,12): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(389,12): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(795,33): warning C4267: '=': conversão de 'size_t' para 'unsigned int', possível perda de dados
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(803,70): warning C4267: 'argumento': conversão de 'size_t' para 'unsigned int', possível perda de dados
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(804,30): warning C4267: '=': conversão de 'size_t' para 'unsigned int', possível perda de dados
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(833,93): warning C4267: 'argumento': conversão de 'size_t' para 'unsigned int', possível perda de dados
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(834,43): warning C4267: '+=': conversão de 'size_t' para 'unsigned int', possível perda de dados
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(1472,31): warning C4267: '=': conversão de 'size_t' para 'unsigned int', possível perda de dados
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(1505,100): warning C4267: '=': conversão de 'size_t' para 'unsigned int', possível perda de dados
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(3407,49): warning C4334: '<<': resultado de 32-bit shift convertido implicitamente para 64 bits (64-bit shift era pretendido?)
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(3413,60): warning C4267: 'argumento': conversão de 'size_t' para 'int', possível perda de dados
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(4365,79): warning C4267: '=': conversão de 'size_t' para 'unsigned int', possível perda de dados
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(4413,45): warning C4267: '=': conversão de 'size_t' para 'unsigned int', possível perda de dados
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(4493,63): warning C4267: '=': conversão de 'size_t' para 'unsigned int', possível perda de dados
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(5420,55): warning C4267: 'inicializando': conversão de 'size_t' para 'unsigned int', possível perda de dados
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\lodepng.cpp(5639,15): warning C4267: 'return': conversão de 'size_t' para 'unsigned int', possível perda de dados
+  Player.cpp
+C:\Users\Proko\Desktop\PG\TrabGA\TrabGA\GameObject.h(6,10): fatal error C1083: Não é possível abrir arquivo incluir: 'gl/glew.h': No such file or directory
