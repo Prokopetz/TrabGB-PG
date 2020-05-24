@@ -14,7 +14,7 @@ TileMap::TileMap() {
 			float randomG = rand() / float(RAND_MAX);
 			float randomB = rand() / float(RAND_MAX);
 			glm::vec4 color = glm::vec4(randomR, randomG, randomB, 1.0f);
-			this->tiles[j][i] = new Tile(this->defaultTileHeight, this->defaultTileWidth, x, y, color);
+			this->tiles[i][j] = new Tile(this->defaultTileHeight, this->defaultTileWidth, x, y, color);
 		}
 	}
 }
@@ -28,21 +28,45 @@ float calculateArea(float v1x, float v2x, float v3x, float v1y, float v2y, float
 		) / 2;
 }
 
+glm::vec2 tileWalking(int r, int c, int direction) {
+	// 1 - north, 2 - sul, 3 - oeste, 4 - leste, 5 - nordeste, 6 - sudeste, 7 - noroeste, 8 sudoeste 
+	switch (direction) {
+		case 1:
+			return glm::vec2(r - 1, c + 2);
+		case 2:
+			return glm::vec2(r - 1, c - 2);
+		case 3:
+			return glm::vec2(r - 1, c);
+		case 4:
+			return glm::vec2(r + 1, c);
+		case 5:
+			return glm::vec2(r, c + 1);
+		case 6:
+			return glm::vec2(r + 1, c - 1);
+		case 7:
+			return glm::vec2(r - 1, c + 1);
+		case 8:
+			c = c - 1;
+			return glm::vec2(r, c);
+	}
+}
+
 void TileMap::onMouseClick(double x, double y) {
 	// mouse map
-	int r = y / (this->defaultTileHeight / 2); // j
-	int c = (x - r * (this->defaultTileWidth / 2)) / this->defaultTileWidth; // i
+	// 0 16
+	int r = round((x - (2 * y)) / defaultTileWidth);
+	int c = (2 * y) / defaultTileHeight;
 
 
-	float x0 = (c * this->defaultTileWidth + r * this->defaultTileHeight);
-	float y0 = (r * (this->defaultTileHeight / 2));
+	float x0 = (r * this->defaultTileWidth + c * this->defaultTileHeight);
+	float y0 = (c * (this->defaultTileHeight / 2));
 
 
 	float bx = x0 + (defaultTileWidth / 2);
 	float by = y0 + defaultTileHeight;
 	
 	float ax = x0;
-	float ay = y0 + defaultTileWidth / 2;
+	float ay = y0 + defaultTileHeight / 2;
 	
 	float dx = x0 + defaultTileWidth / 2;
 	float dy = y0;
@@ -55,11 +79,40 @@ void TileMap::onMouseClick(double x, double y) {
 	float pbd = calculateArea(x, bx, dx, y, by, dy);
 	float apd = calculateArea(ax, x, dx, ay, y, dy);
 
-	bool hasCollision = true;
-	if (abd == (apb + pbd + apd)) {
-		hasCollision = false;
+	float bcd = calculateArea(bx, cx, dx, by, cy, dy);
+	float cpb = calculateArea(cx, x, bx, cy, y, by);
+	float cpd = calculateArea(cx, x, dx, cy, y, dy);
+
+	glm::vec2 values = glm::vec2(r, c);
+	bool hasCollision = false;
+	std::cout << r << "  "<<  c << std::endl;
+	if (abd == (apb + pbd + apd) || bcd == (cpb + pbd + cpd)) {
+		hasCollision = true;
 	}
 	if (!hasCollision) {
+		int direction;
+		if (x > bx && y > cy) {
+			direction = 5;
+			std::cout << "direita cima" << std::endl;
+		}
+		else if (x < bx && y > ay) {
+			direction = 7;
+			std::cout << "esquerda cima" << std::endl;
+		}
+		else if (x < dx && y < ay) {
+			direction = 8;
+			std::cout << "esquerda baixo" << std::endl;
+		}
+		else if (x > dx && y < cy) {
+			direction = 6;
+			std::cout << "direita baixo" << std::endl;
+		}
+		values = tileWalking(r, c, direction);
+	}
+	r = int(values.x);
+	c = int(values.y);
+
+	if (r < NUMBER_OF_TILES_VERTICALLY && c < NUMBER_OF_TILES_HORIZONTALLY && r >= 0 && c >= 0) {
 		this->selectedTile = this->tiles[r][c];
 		this->selectedTile->setColor(glm::vec4(0.5f, 0.5f, 0.5f, 1.0f));
 	}

@@ -12,8 +12,11 @@ void Mouse::MousePosCallback(GLFWwindow* window, double _x, double _y)
 	int width, height;
 	glfwGetFramebufferSize(window, &width, &height);
 
+	
+
 	x = _x;
 	y = height - _y;
+	std::cout << _x << "  " << y << std::endl;
 }
 
 void Mouse::MouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
