@@ -1,4 +1,6 @@
 ﻿  GameMain.cpp
-C:\Users\Proko\Desktop\TrabGA\TrabGA\GameMain.cpp(12,21): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGA\TrabGA\GameMain.cpp(14,21): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+  TileMap.cpp
+C:\Users\Proko\Desktop\TrabGA\TrabGA\TileMap.cpp(8,12): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Proko\Desktop\TrabGA\TrabGA\TileMap.cpp(9,12): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+  Gerando Código...
   TrabGA.vcxproj -> C:\Users\Proko\Desktop\TrabGA\Debug\TrabGA.exe
