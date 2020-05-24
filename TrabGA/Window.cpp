@@ -1,15 +1,13 @@
 #include "Window.h"
-
-const float Window::WINDOW_WIDTH = 512;
-const float Window::WINDOW_HEIGHT = 512;
-
-
 Window::Window() {
     glfwInit();
     this->window = glfwCreateWindow(Window::WINDOW_WIDTH, Window::WINDOW_HEIGHT, "Game", NULL, NULL);
     glfwMakeContextCurrent(this->window);
 
     glewInit();
+
+    glfwSetMouseButtonCallback(this->window, Mouse::MouseButtonCallback);
+    glfwSetCursorPosCallback(this->window, Mouse::MousePosCallback);
 
     glEnable(GL_ALPHA_TEST);
     glEnable(GL_BLEND);
@@ -24,7 +22,7 @@ bool Window::shouldCloseProgram() {
 }
 
 void Window::onBeforeRender() {
-    glClearColor(137.0 / 255.0, 207.0 / 255.0, 240.0 / 255.0, 1.0);
+    glClearColor(0.0 / 255.0, 0.0 / 255.0, 0.0 / 255.0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 

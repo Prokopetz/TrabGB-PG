@@ -9,6 +9,9 @@ int main() {
 
     while (!window->shouldCloseProgram()) {
         window->onBeforeRender();
+        if (Mouse::ButtonUp(0)) {
+            tileMap->onMouseClick(Mouse::GetMouseX(), Mouse::GetMouseY());
+        }
         tileMap->draw();
         window->onAfterRender();
     }

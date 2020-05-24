@@ -9,7 +9,11 @@ public:
 	TileMap();
 	~TileMap();
 	void draw();
+	void onMouseClick(double x, double y);
 private:
 	Tile* tiles[NUMBER_OF_TILES_VERTICALLY][NUMBER_OF_TILES_HORIZONTALLY];
+	float defaultTileHeight;
+	float defaultTileWidth;
+	Tile* selectedTile;
 };
 

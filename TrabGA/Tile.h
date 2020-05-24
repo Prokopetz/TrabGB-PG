@@ -8,9 +8,11 @@
 
 class Tile {
 public:
-	Tile(float height, float width, float posX, float posY);
+	Tile(float height, float width, float posX, float posY, glm::vec4 color);
 	~Tile();
 	void draw();
+	void setColor(glm::vec4 color);
+	glm::vec4 getColor();
 
 private:
 	Shader* shader;
@@ -19,5 +21,6 @@ private:
 	float posY;
 	float height;
 	float width;
+	glm::vec4 color;
 };
 
