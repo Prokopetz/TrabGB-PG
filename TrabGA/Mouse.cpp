@@ -1,5 +1,7 @@
 #include "Mouse.h"
 #include <iostream>
+//NOMES: JOAO DACOL SOARES E NICOLAS GRISA PROKOPETZ
+
 double Mouse::x = 0;
 double Mouse::y = 0;
 

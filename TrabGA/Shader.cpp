@@ -1,4 +1,5 @@
 #include "Shader.h"
+//NOMES: JOAO DACOL SOARES E NICOLAS GRISA PROKOPETZ
 
 Shader::Shader(const char* vertexShaderPath, const char* fragmentShaderPath) {
 	std::string vertexString;

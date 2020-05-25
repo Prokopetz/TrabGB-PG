@@ -1,4 +1,6 @@
 #include "Window.h"
+//NOMES: JOAO DACOL SOARES E NICOLAS GRISA PROKOPETZ
+
 Window::Window() {
     glfwInit();
     this->window = glfwCreateWindow(Window::WINDOW_WIDTH, Window::WINDOW_HEIGHT, "Game", NULL, NULL);

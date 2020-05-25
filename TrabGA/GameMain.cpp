@@ -2,6 +2,8 @@
 #include "Tile.h"
 #include "Window.h"
 #include "TileMap.h"
+
+//NOMES: JOAO DACOL SOARES E NICOLAS GRISA PROKOPETZ
 int main() {
     Window* window = new Window();
 

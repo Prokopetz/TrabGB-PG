@@ -1,4 +1,5 @@
 #include "Keyboard.h"
+//NOMES: JOAO DACOL SOARES E NICOLAS GRISA PROKOPETZ
 
 bool Keyboard::keys[GLFW_KEY_LAST] = { 0 };
 bool Keyboard::keysDown[GLFW_KEY_LAST] = { 0 };

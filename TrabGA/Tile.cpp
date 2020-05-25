@@ -1,4 +1,5 @@
 #include "Tile.h"
+//NOMES: JOAO DACOL SOARES E NICOLAS GRISA PROKOPETZ
 
 Tile::Tile(float height, float width, float posX, float posY, glm::vec4 color) {
     this->height = height;
