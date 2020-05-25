@@ -1,0 +1,39 @@
+﻿Mouse.obj : error LNK2019: símbolo externo indefinido glfwGetFramebufferSize referenciado na função "public: static void __cdecl Mouse::MousePosCallback(struct GLFWwindow *,double,double)" (?MousePosCallback@Mouse@@SAXPEAUGLFWwindow@@NN@Z)
+Shader.obj : error LNK2001: símbolos externos indefinidos __imp___glewAttachShader
+Shader.obj : error LNK2001: símbolos externos indefinidos __imp___glewCompileShader
+Shader.obj : error LNK2001: símbolos externos indefinidos __imp___glewCreateProgram
+Shader.obj : error LNK2001: símbolos externos indefinidos __imp___glewCreateShader
+Shader.obj : error LNK2001: símbolos externos indefinidos __imp___glewDeleteShader
+Shader.obj : error LNK2001: símbolos externos indefinidos __imp___glewGetProgramInfoLog
+Shader.obj : error LNK2001: símbolos externos indefinidos __imp___glewGetProgramiv
+Shader.obj : error LNK2001: símbolos externos indefinidos __imp___glewGetShaderInfoLog
+Shader.obj : error LNK2001: símbolos externos indefinidos __imp___glewGetShaderiv
+Shader.obj : error LNK2001: símbolos externos indefinidos __imp___glewLinkProgram
+Shader.obj : error LNK2001: símbolos externos indefinidos __imp___glewShaderSource
+Shader.obj : error LNK2001: símbolos externos indefinidos __imp___glewUseProgram
+Tile.obj : error LNK2001: símbolos externos indefinidos __imp___glewBindBuffer
+Tile.obj : error LNK2001: símbolos externos indefinidos __imp___glewBufferData
+Tile.obj : error LNK2001: símbolos externos indefinidos __imp___glewGenBuffers
+Tile.obj : error LNK2001: símbolos externos indefinidos __imp___glewEnableVertexAttribArray
+Tile.obj : error LNK2001: símbolos externos indefinidos __imp___glewGetUniformLocation
+Tile.obj : error LNK2001: símbolos externos indefinidos __imp___glewUniform4f
+Tile.obj : error LNK2001: símbolos externos indefinidos __imp___glewUniformMatrix4fv
+Tile.obj : error LNK2001: símbolos externos indefinidos __imp___glewVertexAttribPointer
+Tile.obj : error LNK2001: símbolos externos indefinidos __imp___glewBindVertexArray
+Tile.obj : error LNK2001: símbolos externos indefinidos __imp___glewGenVertexArrays
+Window.obj : error LNK2019: símbolo externo indefinido __imp_glewInit referenciado na função "public: __cdecl Window::Window(void)" (??0Window@@QEAA@XZ)
+Window.obj : error LNK2019: símbolo externo indefinido glfwInit referenciado na função "public: __cdecl Window::Window(void)" (??0Window@@QEAA@XZ)
+Window.obj : error LNK2019: símbolo externo indefinido glfwTerminate referenciado na função "public: __cdecl Window::~Window(void)" (??1Window@@QEAA@XZ)
+Window.obj : error LNK2019: símbolo externo indefinido glfwCreateWindow referenciado na função "public: __cdecl Window::Window(void)" (??0Window@@QEAA@XZ)
+Window.obj : error LNK2019: símbolo externo indefinido glfwDestroyWindow referenciado na função "public: __cdecl Window::~Window(void)" (??1Window@@QEAA@XZ)
+Window.obj : error LNK2019: símbolo externo indefinido glfwWindowShouldClose referenciado na função "public: bool __cdecl Window::shouldCloseProgram(void)" (?shouldCloseProgram@Window@@QEAA_NXZ)
+Window.obj : error LNK2019: símbolo externo indefinido glfwPollEvents referenciado na função "public: void __cdecl Window::onAfterRender(void)" (?onAfterRender@Window@@QEAAXXZ)
+Window.obj : error LNK2019: símbolo externo indefinido glfwSetKeyCallback referenciado na função "public: __cdecl Window::Window(void)" (??0Window@@QEAA@XZ)
+Window.obj : error LNK2019: símbolo externo indefinido glfwSetMouseButtonCallback referenciado na função "public: __cdecl Window::Window(void)" (??0Window@@QEAA@XZ)
+Window.obj : error LNK2019: símbolo externo indefinido glfwSetCursorPosCallback referenciado na função "public: __cdecl Window::Window(void)" (??0Window@@QEAA@XZ)
+Window.obj : error LNK2019: símbolo externo indefinido glfwMakeContextCurrent referenciado na função "public: __cdecl Window::Window(void)" (??0Window@@QEAA@XZ)
+Window.obj : error LNK2019: símbolo externo indefinido glfwSwapBuffers referenciado na função "public: void __cdecl Window::onAfterRender(void)" (?onAfterRender@Window@@QEAAXXZ)
+Window.obj : error LNK2019: símbolo externo indefinido glfwSwapInterval referenciado na função "public: __cdecl Window::Window(void)" (??0Window@@QEAA@XZ)
+C:\Users\Proko\Desktop\TrabGB-PG\\libs\GLEW\lib\Release\Win32\glew32s.lib : warning LNK4272: o tipo de máquina da biblioteca 'x86' está em conflito com o tipo de máquina de destino 'x64'
+C:\Users\Proko\Desktop\TrabGB-PG\\libs\GLFW\lib-vc2019\glfw3.lib : warning LNK4272: o tipo de máquina da biblioteca 'x86' está em conflito com o tipo de máquina de destino 'x64'
+C:\Users\Proko\Desktop\TrabGB-PG\x64\Debug\TrabGB.exe : fatal error LNK1120: 36 externo não resolvidos
