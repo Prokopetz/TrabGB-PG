@@ -178,7 +178,7 @@
     <None Include="vertex.shader" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="TrabGA.rc" />
+    <ResourceCompile Include="TrabGB.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

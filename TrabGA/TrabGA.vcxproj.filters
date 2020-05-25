@@ -69,7 +69,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="TrabGA.rc">
+    <ResourceCompile Include="TrabGB.rc">
       <Filter>Arquivos de Recurso</Filter>
     </ResourceCompile>
   </ItemGroup>
