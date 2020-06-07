@@ -1,9 +1,4 @@
-﻿  GameMain.cpp
-  Keyboard.cpp
-  Mouse.cpp
-  Shader.cpp
-  Tile.cpp
-  TileMap.cpp
+﻿  TileMap.cpp
 C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(24,85): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
 C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(24,82): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
 C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(34,79): warning C4244: 'argumento': conversão de 'double' para 'int', possível perda de dados
@@ -22,48 +17,43 @@ C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(43,8): warning C4244: 'inici
           [
               T=float
           ]
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(59,36): warning C4244: 'return': conversão de 'float' para 'int', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(63,11): warning C4244: 'return': conversão de 'float' para 'int', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(70,8): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(60,36): warning C4244: 'return': conversão de 'float' para 'int', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(65,119): warning C4244: 'return': conversão de 'double' para 'int', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(72,8): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
           with
           [
               T=float
           ]
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(71,8): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(73,8): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
           with
           [
               T=float
           ]
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(73,11): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(74,11): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(89,43): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(89,32): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(90,39): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(90,28): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(75,11): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(76,11): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
 C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(91,43): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
 C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(91,32): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(94,43): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(94,32): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(95,43): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(95,32): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(102,8): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(92,39): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(92,28): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(93,43): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(93,32): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(96,43): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(96,32): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(97,43): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(97,32): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(104,8): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
           with
           [
               T=float
           ]
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(103,8): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(105,8): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
           with
           [
               T=float
           ]
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(104,11): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(105,11): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(173,8): warning C4244: 'inicializando': conversão de 'float' para 'int', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(174,8): warning C4244: 'inicializando': conversão de 'float' para 'int', possível perda de dados
-  Window.cpp
-  Gerando Código...
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(156): warning C4715: 'TileMap::tileWalking': nem todos os caminhos de controle retornam um valor
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflita com uso de outras bibliotecas; use /NODEFAULTLIB:library
-LINK : warning LNK4098: defaultlib 'LIBCMT' conflita com uso de outras bibliotecas; use /NODEFAULTLIB:library
-glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' não foi encontrado 'glew32s.lib(glew.obj)' ou no 'C:\Users\Proko\Desktop\TrabGB-PG\Debug\vc120.pdb'; vinculando objeto quando quando sem nenhuma informação de depuração
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(106,11): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(107,11): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(176,8): warning C4244: 'inicializando': conversão de 'float' para 'int', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(177,8): warning C4244: 'inicializando': conversão de 'double' para 'int', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(158): warning C4715: 'TileMap::tileWalking': nem todos os caminhos de controle retornam um valor
   TrabGB.vcxproj -> C:\Users\Proko\Desktop\TrabGB-PG\Debug\TrabGB.exe

@@ -5,8 +5,8 @@
 #include "Keyboard.h"
 class Window {
 public:
-	static const int WINDOW_HEIGHT = 512;
-	static const int WINDOW_WIDTH = 512;
+	static const int WINDOW_HEIGHT = 762;
+	static const int WINDOW_WIDTH = 1024;
 	Window();
 	~Window();
 	bool shouldCloseProgram();

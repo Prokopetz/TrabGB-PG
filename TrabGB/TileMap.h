@@ -4,8 +4,8 @@
 
 class TileMap {
 public:
-	static const int NUMBER_OF_TILES_HORIZONTALLY = 5;
-	static const int NUMBER_OF_TILES_VERTICALLY = 5;
+	static const int NUMBER_OF_TILES_HORIZONTALLY = 16;
+	static const int NUMBER_OF_TILES_VERTICALLY = 16;
 	TileMap();
 	~TileMap();
 	void draw();

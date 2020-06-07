@@ -56,11 +56,13 @@ void TileMap::draw() {
 //private
 
 int TileMap::getTileXPositionFromMatrix(int r, int c) {
-	return r * this->defaultTileWidth + c * this->defaultTileHeight;
+	//return r * this->defaultTileWidth + c * this->defaultTileHeight;
+	return this->defaultTileWidth / 2 * (c + r);
 }
 
 int TileMap::getTileYPositionFromMatrix(int r, int c) {
-	return c * (this->defaultTileHeight / 2);
+	/*return c * (this->defaultTileHeight / 2);*/
+	return  (this->defaultTileHeight / 2 * (r - c)) + (this->defaultTileHeight * this->NUMBER_OF_TILES_VERTICALLY / 1.3) - this->defaultTileHeight / 2;
 
 }
 
@@ -168,12 +170,15 @@ void TileMap::changeSelectedTileIfNeeded(glm::vec2 tileMatrixPosition) {
 		this->selectedTile->setColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 	}
 }
-
+//offset
+//(
 glm::vec2 TileMap::getRowAndColumnForMousePositionClick(int x, int y) {
-	int r = round((x - (2 * y)) / defaultTileWidth);
-	int c = (2 * y) / defaultTileHeight;
+	int c = y / this->defaultTileHeight + x / this->defaultTileWidth;
+	int r = -2 * (y - (this->defaultTileHeight * this->NUMBER_OF_TILES_VERTICALLY / 1.3) - this->defaultTileHeight / 2) / this->defaultTileHeight + c;
+	std::cout << r << c << std::endl;
 	return glm::vec2(r, c);
 }
+
 
 TileMap::~TileMap() {}
 
