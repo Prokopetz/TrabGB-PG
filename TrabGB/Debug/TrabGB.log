@@ -53,7 +53,8 @@ C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(105,8): warning C4244: 'inic
           ]
 C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(106,11): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
 C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(107,11): warning C4244: 'inicializando': conversão de 'int' para 'float', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(175,13): warning C4244: 'inicializando': conversão de 'double' para 'int', possível perda de dados
 C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(176,8): warning C4244: 'inicializando': conversão de 'float' para 'int', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(177,8): warning C4244: 'inicializando': conversão de 'double' para 'int', possível perda de dados
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(158): warning C4715: 'TileMap::tileWalking': nem todos os caminhos de controle retornam um valor
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(177,8): warning C4244: 'inicializando': conversão de 'float' para 'int', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\TileMap.cpp(157): warning C4715: 'TileMap::tileWalking': nem todos os caminhos de controle retornam um valor
   TrabGB.vcxproj -> C:\Users\Proko\Desktop\TrabGB-PG\Debug\TrabGB.exe

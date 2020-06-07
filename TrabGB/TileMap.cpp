@@ -138,22 +138,21 @@ glm::vec2 TileMap::tileWalking(int r, int c, int direction) {
 	// 1 - north, 2 - sul, 3 - oeste, 4 - leste, 5 - nordeste, 6 - sudeste, 7 - noroeste, 8 sudoeste 
 	switch (direction) {
 	case 1:
-		return glm::vec2(r - 1, c + 2);
-	case 2:
-		return glm::vec2(r + 1, c - 2);
-	case 3:
-		return glm::vec2(r - 1, c);
-	case 4:
-		return glm::vec2(r + 1, c);
-	case 5:
-		return glm::vec2(r, c + 1);
-	case 6:
 		return glm::vec2(r + 1, c - 1);
-	case 7:
+	case 2:
 		return glm::vec2(r - 1, c + 1);
+	case 3:
+		return glm::vec2(r - 1, c - 1);
+	case 4:
+		return glm::vec2(r + 1, c + 1);
+	case 5:
+		return glm::vec2(r + 1, c);
+	case 6:
+		return glm::vec2(r, c + 1);
+	case 7:
+		return glm::vec2(r, c - 1);
 	case 8:
-		c = c - 1;
-		return glm::vec2(r, c);
+		return glm::vec2(r - 1, c);
 	}
 }
 
@@ -173,8 +172,9 @@ void TileMap::changeSelectedTileIfNeeded(glm::vec2 tileMatrixPosition) {
 //offset
 //(
 glm::vec2 TileMap::getRowAndColumnForMousePositionClick(int x, int y) {
-	int c = y / this->defaultTileHeight + x / this->defaultTileWidth;
-	int r = -2 * (y - (this->defaultTileHeight * this->NUMBER_OF_TILES_VERTICALLY / 1.3) - this->defaultTileHeight / 2) / this->defaultTileHeight + c;
+	int offset = (this->defaultTileHeight * this->NUMBER_OF_TILES_VERTICALLY / 1.3) - this->defaultTileHeight / 2;
+	int c = round((2 * x / this->defaultTileWidth - 2 * (y - offset) / this->defaultTileHeight) / 2);
+	int r = floor(2 * (y - offset) / this->defaultTileHeight + c);
 	std::cout << r << c << std::endl;
 	return glm::vec2(r, c);
 }
