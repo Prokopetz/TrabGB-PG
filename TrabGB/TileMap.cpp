@@ -21,13 +21,11 @@ TileMap::TileMap() {
 			float randomG = rand() / float(RAND_MAX);
 			float randomB = rand() / float(RAND_MAX);
 			glm::vec4 color = glm::vec4(randomR, randomG, randomB, 1.0f);
-			this->tiles[i][j] = new Tile(this->defaultTileHeight, this->defaultTileWidth, x, y, color);
+			this->tiles[i][j] = new Tile(this->defaultTileHeight, this->defaultTileWidth, x, y, 5, 1);
 		}
 	}
 	this->selectedTilePosition = glm::vec2(0, 0);
 	this->selectedTile = this->tiles[0][0];
-	this->lastSelectedTileColor = this->selectedTile->getColor();
-	this->selectedTile->setColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 }
 
 void TileMap::onMouseClick(double x, double y) {
@@ -162,11 +160,9 @@ void TileMap::changeSelectedTileIfNeeded(glm::vec2 tileMatrixPosition) {
 	if (r < NUMBER_OF_TILES_VERTICALLY && c < NUMBER_OF_TILES_HORIZONTALLY && r >= 0 && c >= 0) {
 		this->selectedTilePosition = glm::vec2(r, c);
 		if (this->selectedTile != nullptr) {
-			this->selectedTile->setColor(this->lastSelectedTileColor);
 		}
 		this->selectedTile = this->tiles[r][c];
-		this->lastSelectedTileColor = this->selectedTile->getColor();
-		this->selectedTile->setColor(glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
+
 	}
 }
 //offset

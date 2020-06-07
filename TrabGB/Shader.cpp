@@ -75,3 +75,12 @@ void Shader::use() {
 	glUseProgram(this->id);
 }
 
+void Shader::setUniform1i(const char* name, int value) {
+	unsigned int location = glGetUniformLocation(this->id, name);
+	glUniform1i(location, value);
+}
+
+void Shader::setUniform2f(const char* name, float valueX, float valueY) {
+	unsigned int location = glGetUniformLocation(this->id, name);
+	glUniform2f(location, valueX, valueY);
+}

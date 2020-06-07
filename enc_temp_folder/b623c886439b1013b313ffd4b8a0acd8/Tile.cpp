@@ -24,7 +24,18 @@ Tile::Tile(float height, float width, float posX, float posY, int offsetX, int o
          tileWidth, tileHeight / 2, 0.0f,       1.0f, 1.0f, 0.0f,   tileWidth, tileHeight / 2,
          tileWidth / 2, tileHeight, 0.0f,       1.0f, 1.0f, 0.0f,   tileWidth / 2, tileHeight,
          tileWidth / 2, 0.0f, 0.0f,             1.0f, 1.0f, 0.0f,   tileWidth / 2, 0.0f
+
     };
+
+    //float vertices[] = {
+    //    0.0f, tileHeight / 2, 0.0f, tileHeight / 2,
+    //    tileWidth / 2, tileHeight, tileWidth / 2, tileHeight,
+    //    tileWidth / 2, 0.0f, tileWidth / 2, 0.0f,
+
+    //    tileWidth, tileHeight /2, tileWidth, tileHeight / 2,
+    //    tileWidth / 2, tileHeight, tileWidth / 2, tileHeight,
+    //    tileWidth / 2, 0.0f, tileWidth / 2, 0.0f,
+    //};
 
     unsigned int buffer;
     glGenBuffers(1, &buffer);
