@@ -1,7 +1,7 @@
 #include "Tile.h"
 //NOMES: JOAO DACOL SOARES E NICOLAS GRISA PROKOPETZ
 
-Tile::Tile(float height, float width, float posX, float posY, int offsetX, int offsetY) {
+Tile::Tile(float height, float width, float posX, float posY, glm::vec2 offset) {
     this->height = height;
     this->width = width;
     this->posX = posX;
@@ -16,14 +16,17 @@ Tile::Tile(float height, float width, float posX, float posY, int offsetX, int o
     float tileWidth = (width / (Window::WINDOW_WIDTH / 2));
     float tileHeight = (height / (Window::WINDOW_HEIGHT / 2));
 
+    float textureWidth = (128.0f / (1024.0f));
+    float textureHeight = (64.0f / (768.0f));
+
     float vertices[] = {
         // positions                                // colors           // texture coords
-         0.0f, tileHeight / 2, 0.0f,            1.0f, 0.0f, 0.0f,   0.0f, tileHeight / 2,
-         tileWidth / 2, tileHeight, 0.0f,       0.0f, 1.0f, 0.0f,   tileWidth / 2, tileHeight,
-         tileWidth / 2, 0.0f, 0.0f,             0.0f, 0.0f, 1.0f,   tileWidth / 2, 0.0f,
-         tileWidth, tileHeight / 2, 0.0f,       1.0f, 1.0f, 0.0f,   tileWidth, tileHeight / 2,
-         tileWidth / 2, tileHeight, 0.0f,       1.0f, 1.0f, 0.0f,   tileWidth / 2, tileHeight,
-         tileWidth / 2, 0.0f, 0.0f,             1.0f, 1.0f, 0.0f,   tileWidth / 2, 0.0f
+         0.0f, tileHeight / 2, 0.0f,            1.0f, 0.0f, 0.0f,   0.0f, textureHeight / 2,
+         tileWidth / 2, tileHeight, 0.0f,       0.0f, 1.0f, 0.0f,   textureWidth / 2, textureHeight,
+         tileWidth / 2, 0.0f, 0.0f,             0.0f, 0.0f, 1.0f,   textureWidth / 2, 0.0f,
+         tileWidth, tileHeight / 2, 0.0f,       1.0f, 1.0f, 0.0f,   textureWidth, textureHeight / 2,
+         tileWidth / 2, tileHeight, 0.0f,       1.0f, 1.0f, 0.0f,   textureWidth / 2, textureHeight,
+         tileWidth / 2, 0.0f, 0.0f,             1.0f, 1.0f, 0.0f,   textureWidth / 2, 0.0f
     };
 
     unsigned int buffer;
@@ -47,12 +50,9 @@ Tile::Tile(float height, float width, float posX, float posY, int offsetX, int o
 
     shader->use();
 
-    this->texture = new Texture("assets/texture.jpg");
-    texture->bind(0);
-
     shader->setUniform1i("ourTexture", 0);
 
-    shader->setUniform2f("offset", offsetX * tileWidth, offsetY * tileHeight);
+    shader->setUniform2f("offset", offset.x * textureWidth, offset.y * textureHeight);
 
 }
 

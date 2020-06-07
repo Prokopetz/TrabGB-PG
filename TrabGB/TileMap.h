@@ -1,11 +1,11 @@
 #pragma once
 #include <vector>
 #include "Tile.h"
-
+#include "TileSet.h"
 class TileMap {
 public:
-	static const int NUMBER_OF_TILES_HORIZONTALLY = 1;
-	static const int NUMBER_OF_TILES_VERTICALLY = 1;
+	static const int NUMBER_OF_TILES_HORIZONTALLY = 16;
+	static const int NUMBER_OF_TILES_VERTICALLY = 16;
 	TileMap();
 	~TileMap();
 	void draw();

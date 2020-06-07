@@ -10,6 +10,7 @@ float calculateArea(float v1x, float v2x, float v3x, float v1y, float v2y, float
 }
 // public
 TileMap::TileMap() {
+	TileSet* tileSet = new TileSet("assets/texture.jpg", 12, 8);
 	this->defaultTileHeight = 32.0f;
 	this->defaultTileWidth = 64.0f;
 
@@ -17,11 +18,9 @@ TileMap::TileMap() {
 		for (int j = 0; j < this->NUMBER_OF_TILES_HORIZONTALLY; j++) {
 			int x = this->getTileXPositionFromMatrix(i, j);
 			int y = this->getTileYPositionFromMatrix(i, j);
-			float randomR = rand() / float(RAND_MAX);
-			float randomG = rand() / float(RAND_MAX);
-			float randomB = rand() / float(RAND_MAX);
-			glm::vec4 color = glm::vec4(randomR, randomG, randomB, 1.0f);
-			this->tiles[i][j] = new Tile(this->defaultTileHeight, this->defaultTileWidth, x, y, 5, 1);
+			int id = rand() % 96;
+			glm::vec2 offset = tileSet->getTile(id);
+			this->tiles[i][j] = new Tile(this->defaultTileHeight, this->defaultTileWidth, x, y, offset);
 		}
 	}
 	this->selectedTilePosition = glm::vec2(0, 0);

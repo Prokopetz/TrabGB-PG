@@ -9,7 +9,7 @@
 
 class Tile {
 public:
-	Tile(float height, float width, float posX, float posY, int offsetX, int offsetY);
+	Tile(float height, float width, float posX, float posY, glm::vec2 offset);
 	~Tile();
 	void draw();
 

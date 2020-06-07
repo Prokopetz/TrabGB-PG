@@ -5,7 +5,7 @@
 Texture::Texture(const char* filename) {
 	glGenTextures(1, &this->id);
 	int bpp;
-
+	stbi_set_flip_vertically_on_load(1);
 	unsigned char* image = stbi_load("assets/texture.jpg", &this->width, &this->height, &bpp, 4);
 	
 	glBindTexture(GL_TEXTURE_2D, this->id);
