@@ -6,7 +6,7 @@ Texture::Texture(const char* filename) {
 	glGenTextures(1, &this->id);
 	int bpp;
 	stbi_set_flip_vertically_on_load(1);
-	unsigned char* image = stbi_load("assets/texture.jpg", &this->width, &this->height, &bpp, 4);
+	unsigned char* image = stbi_load(filename, &this->width, &this->height, &bpp, 4);
 	
 	glBindTexture(GL_TEXTURE_2D, this->id);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -19,14 +19,30 @@ Texture::Texture(const char* filename) {
 
 	if (image) {
 		stbi_image_free(image);
-;	}
+	}
 }
 
 Texture::~Texture() {
 	glDeleteTextures(1, &this->id);
 }
 
-void Texture::bind(int slot) {
-	glActiveTexture(GL_TEXTURE0 + slot);
+void Texture::bind() {
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, this->id);
+}
+
+void Texture::unbind() {
+	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+int Texture::getImageHeight() {
+	return this->height;
+}
+
+int Texture::getImageWidth() {
+	return this->width;
+}
+
+int Texture::getId() {
+	return this->id;
 }

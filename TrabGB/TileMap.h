@@ -2,6 +2,8 @@
 #include <vector>
 #include "Tile.h"
 #include "TileSet.h"
+#include "GameObject.h"
+#include "Player.h"
 class TileMap {
 public:
 	static const int NUMBER_OF_TILES_HORIZONTALLY = 16;
@@ -12,6 +14,7 @@ public:
 	void onMouseClick(double x, double y);
 	void onKeyboardClick(int direction);
 private:
+	Player* player;
 	int getTileXPositionFromMatrix(int r, int c);
 	int getTileYPositionFromMatrix(int r, int c);
 	bool hasCollision(int x, int y);

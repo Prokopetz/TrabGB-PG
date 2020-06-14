@@ -1,6 +1,24 @@
 #include "TileMap.h"
 //NOMES: JOAO DACOL SOARES E NICOLAS GRISA PROKOPETZ
-
+int textureMap[16][16] = {
+{10, 10, 10, 10, 10, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21},
+{10, 21, 21, 21, 21, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21},
+{10, 21, 21, 21, 21, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21},
+{10, 21, 21, 21, 21, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21},
+{10, 21, 21, 21, 21, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21},
+{10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 21, 21, 21, 21},
+{10, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21},
+{10, 21, 21, 21, 21, 21, 10, 10, 10, 21, 21, 21, 21, 21, 21, 21},
+{10, 10, 10, 10, 10, 21, 10, 21, 10, 21, 21, 21, 21, 21, 21, 21},
+{21, 21, 21, 21, 10, 10, 10, 21, 10, 10, 10, 10, 21, 21, 21, 21},
+{21, 21, 21, 21, 10, 21, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21},
+{21, 21, 21, 21, 10, 21, 10, 21, 21, 21, 21, 10, 10, 10, 10, 10},
+{10, 10, 10, 10, 10, 21, 10, 10, 10, 10, 10, 10, 21, 10, 21, 21},
+{21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 10, 21, 21},
+{10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 21, 21},
+{21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21}
+};
+TileSet* tileSet;
 //util
 float calculateArea(float v1x, float v2x, float v3x, float v1y, float v2y, float v3y) {
 	return abs(
@@ -10,7 +28,7 @@ float calculateArea(float v1x, float v2x, float v3x, float v1y, float v2y, float
 }
 // public
 TileMap::TileMap() {
-	TileSet* tileSet = new TileSet("assets/texture.jpg", 12, 8);
+	tileSet = new TileSet("assets/handpainted.png", 4, 4);
 	this->defaultTileHeight = 32.0f;
 	this->defaultTileWidth = 64.0f;
 
@@ -18,11 +36,17 @@ TileMap::TileMap() {
 		for (int j = 0; j < this->NUMBER_OF_TILES_HORIZONTALLY; j++) {
 			int x = this->getTileXPositionFromMatrix(i, j);
 			int y = this->getTileYPositionFromMatrix(i, j);
-			int id = rand() % 96;
+			int id = textureMap[j][i];
 			glm::vec2 offset = tileSet->getTile(id);
-			this->tiles[i][j] = new Tile(this->defaultTileHeight, this->defaultTileWidth, x, y, offset);
+			this->tiles[i][j] = new Tile(this->defaultTileHeight, this->defaultTileWidth, x, y, offset, 0, tileSet->getNormalizedTextureWidth(), tileSet->getNormalizedTextureHeight());
 		}
 	}
+	tileSet->unbindTexture();
+
+
+	this->player = new Player(75, 50, this->tiles[0][0]);
+
+
 	this->selectedTilePosition = glm::vec2(0, 0);
 	this->selectedTile = this->tiles[0][0];
 }
@@ -32,6 +56,31 @@ void TileMap::onMouseClick(double x, double y) {
 	if (!this->hasCollision(x, y)) {
 		tileMatrixPosition = tileWalkingToCorrectDirection(x, y);
 	}
+	int currentRow = this->selectedTilePosition.x;
+	int currentColumn = this->selectedTilePosition.y;
+	int nextRow = tileMatrixPosition.x;
+	int nextColumn = tileMatrixPosition.y;
+	if (currentRow != nextRow && currentColumn != nextColumn) {
+		return;
+	}
+	if ((nextRow > currentRow + 1 || nextRow + 1 < currentRow)) {
+		return;
+	}
+	if (nextColumn > currentColumn + 1 || nextColumn + 1 < currentColumn) {
+		return;
+	}
+	if (nextRow == currentRow && nextColumn > currentColumn) {
+		this->player->changeDirection(Player::SOUTH_EAST);
+	}
+	if (nextRow == currentRow && nextColumn < currentColumn) {
+		this->player->changeDirection(Player::NORTH_WEST);
+	}
+	if (nextColumn == currentColumn && nextRow > currentRow) {
+		this->player->changeDirection(Player::NORTH_EAST);
+	}
+	if (nextColumn == currentColumn && nextRow < currentRow) {
+		this->player->changeDirection(Player::SOUTH_WEST);
+	}
 	this->changeSelectedTileIfNeeded(tileMatrixPosition);
 }
 
@@ -39,15 +88,30 @@ void TileMap::onKeyboardClick(int direction) {
 	int r = this->selectedTilePosition.x;
 	int c = this->selectedTilePosition.y;
 	glm::vec2 values = tileWalking(r, c, direction);
+	if (direction == 6) {
+		this->player->changeDirection(Player::SOUTH_EAST);
+	}
+	if (direction == 7) {
+		this->player->changeDirection(Player::NORTH_WEST);
+	}
+	if (direction == 5) {
+		this->player->changeDirection(Player::NORTH_EAST);
+	}
+	if (direction == 8) {
+		this->player->changeDirection(Player::SOUTH_WEST);
+	}
 	this->changeSelectedTileIfNeeded(values);
 }
 
 void TileMap::draw() {
+	tileSet->bindTexture();
 	for (int i = 0; i < this->NUMBER_OF_TILES_VERTICALLY; i++) {
 		for (int j = 0; j < this->NUMBER_OF_TILES_HORIZONTALLY; j++) {
 			this->tiles[i][j]->draw();
 		}
 	}
+	tileSet->unbindTexture();
+	player->draw();
 }
 
 //private
@@ -161,6 +225,7 @@ void TileMap::changeSelectedTileIfNeeded(glm::vec2 tileMatrixPosition) {
 		if (this->selectedTile != nullptr) {
 		}
 		this->selectedTile = this->tiles[r][c];
+		this->player->setCurrentTile(selectedTile);
 
 	}
 }
@@ -173,6 +238,8 @@ glm::vec2 TileMap::getRowAndColumnForMousePositionClick(int x, int y) {
 	std::cout << r << c << std::endl;
 	return glm::vec2(r, c);
 }
+
+
 
 
 TileMap::~TileMap() {}

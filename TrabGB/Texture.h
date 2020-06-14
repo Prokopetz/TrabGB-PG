@@ -4,8 +4,11 @@ class Texture {
 public:
 	Texture(const char* filename);
 	~Texture();
-	void bind(int slot);
+	void bind();
 	void unbind();
+	int getImageHeight();
+	int getImageWidth();
+	int getId();
 private:
 	int width;
 	int height;

@@ -1,11 +1,12 @@
 #include "Tile.h"
 //NOMES: JOAO DACOL SOARES E NICOLAS GRISA PROKOPETZ
 
-Tile::Tile(float height, float width, float posX, float posY, glm::vec2 offset) {
+Tile::Tile(float height, float width, float posX, float posY, glm::vec2 offset, int textureId, float textureWidth, float textureHeight) {
     this->height = height;
     this->width = width;
     this->posX = posX;
     this->posY = posY;
+    this->textureId = textureId;
 
     this->shader = new Shader("vertex.shader", "fragment.shader");
     
@@ -15,9 +16,6 @@ Tile::Tile(float height, float width, float posX, float posY, glm::vec2 offset) 
 
     float tileWidth = (width / (Window::WINDOW_WIDTH / 2));
     float tileHeight = (height / (Window::WINDOW_HEIGHT / 2));
-
-    float textureWidth = (128.0f / (1024.0f));
-    float textureHeight = (64.0f / (768.0f));
 
     float vertices[] = {
         // positions                                // colors           // texture coords
@@ -44,13 +42,13 @@ Tile::Tile(float height, float width, float posX, float posY, glm::vec2 offset) 
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
 
-    glBindVertexArray(this->vao);
+    glBindVertexArray(0);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     shader->use();
 
-    shader->setUniform1i("ourTexture", 0);
+    shader->setUniform1i("ourTexture", this->textureId);
 
     shader->setUniform2f("offset", offset.x * textureWidth, offset.y * textureHeight);
 
@@ -65,11 +63,20 @@ void Tile::draw() {
 
     unsigned int transformLocation = glGetUniformLocation(shader->id, "transform");
     glUniformMatrix4fv(transformLocation, 1, GL_FALSE, glm::value_ptr(transform));
-
+    glBindVertexArray(this->vao);
     glDrawArrays(GL_TRIANGLES, 0, 6);
+    glBindVertexArray(0);
 }
 
 
 Tile::~Tile() {
     std::cout << "Destrutor chamado " << posX << std::endl;
+}
+
+float Tile::getPosX() {
+    return this->posX;
+}
+
+float Tile::getPosY() {
+    return this->posY;
 }
