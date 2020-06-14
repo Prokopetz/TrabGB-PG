@@ -56,50 +56,19 @@ void TileMap::onMouseClick(double x, double y) {
 	if (!this->hasCollision(x, y)) {
 		tileMatrixPosition = tileWalkingToCorrectDirection(x, y);
 	}
-	int currentRow = this->selectedTilePosition.x;
-	int currentColumn = this->selectedTilePosition.y;
-	int nextRow = tileMatrixPosition.x;
-	int nextColumn = tileMatrixPosition.y;
-	if (currentRow != nextRow && currentColumn != nextColumn) {
+	if (!this->isValidStep(tileMatrixPosition)) {
 		return;
 	}
-	if ((nextRow > currentRow + 1 || nextRow + 1 < currentRow)) {
-		return;
-	}
-	if (nextColumn > currentColumn + 1 || nextColumn + 1 < currentColumn) {
-		return;
-	}
-	if (nextRow == currentRow && nextColumn > currentColumn) {
-		this->player->changeDirection(Player::SOUTH_EAST);
-	}
-	if (nextRow == currentRow && nextColumn < currentColumn) {
-		this->player->changeDirection(Player::NORTH_WEST);
-	}
-	if (nextColumn == currentColumn && nextRow > currentRow) {
-		this->player->changeDirection(Player::NORTH_EAST);
-	}
-	if (nextColumn == currentColumn && nextRow < currentRow) {
-		this->player->changeDirection(Player::SOUTH_WEST);
-	}
+	this->changePlayerDirection(tileMatrixPosition);
 	this->changeSelectedTileIfNeeded(tileMatrixPosition);
 }
+
 
 void TileMap::onKeyboardClick(int direction) {
 	int r = this->selectedTilePosition.x;
 	int c = this->selectedTilePosition.y;
 	glm::vec2 values = tileWalking(r, c, direction);
-	if (direction == 6) {
-		this->player->changeDirection(Player::SOUTH_EAST);
-	}
-	if (direction == 7) {
-		this->player->changeDirection(Player::NORTH_WEST);
-	}
-	if (direction == 5) {
-		this->player->changeDirection(Player::NORTH_EAST);
-	}
-	if (direction == 8) {
-		this->player->changeDirection(Player::SOUTH_WEST);
-	}
+	this->player->changeDirection(direction);
 	this->changeSelectedTileIfNeeded(values);
 }
 
@@ -177,19 +146,19 @@ glm::vec2 TileMap::tileWalkingToCorrectDirection(int x, int y) {
 
 	int direction = 0;
 	if (x > bx && y > cy) {
-		direction = 5;
+		direction = 1;
 		std::cout << "direita cima" << std::endl;
 	}
 	else if (x < bx && y > ay) {
-		direction = 7;
+		direction = 0;
 		std::cout << "esquerda cima" << std::endl;
 	}
 	else if (x < dx && y < ay) {
-		direction = 8;
+		direction = 2;
 		std::cout << "esquerda baixo" << std::endl;
 	}
 	else if (x > dx && y < cy) {
-		direction = 6;
+		direction = 3;
 		std::cout << "direita baixo" << std::endl;
 	}
 	return tileWalking(r, c, direction);
@@ -198,21 +167,13 @@ glm::vec2 TileMap::tileWalkingToCorrectDirection(int x, int y) {
 glm::vec2 TileMap::tileWalking(int r, int c, int direction) {
 	// 1 - north, 2 - sul, 3 - oeste, 4 - leste, 5 - nordeste, 6 - sudeste, 7 - noroeste, 8 sudoeste 
 	switch (direction) {
-	case 1:
-		return glm::vec2(r + 1, c - 1);
-	case 2:
-		return glm::vec2(r - 1, c + 1);
-	case 3:
-		return glm::vec2(r - 1, c - 1);
-	case 4:
-		return glm::vec2(r + 1, c + 1);
-	case 5:
+	case Player::NORTH_EAST:
 		return glm::vec2(r + 1, c);
-	case 6:
+	case Player::SOUTH_EAST:
 		return glm::vec2(r, c + 1);
-	case 7:
+	case Player::NORTH_WEST:
 		return glm::vec2(r, c - 1);
-	case 8:
+	case Player::SOUTH_WEST:
 		return glm::vec2(r - 1, c);
 	}
 }
@@ -229,8 +190,7 @@ void TileMap::changeSelectedTileIfNeeded(glm::vec2 tileMatrixPosition) {
 
 	}
 }
-//offset
-//(
+
 glm::vec2 TileMap::getRowAndColumnForMousePositionClick(int x, int y) {
 	int offset = (this->defaultTileHeight * this->NUMBER_OF_TILES_VERTICALLY / 1.3) - this->defaultTileHeight / 2;
 	int c = round((2 * x / this->defaultTileWidth - 2 * (y - offset) / this->defaultTileHeight) / 2);
@@ -239,8 +199,42 @@ glm::vec2 TileMap::getRowAndColumnForMousePositionClick(int x, int y) {
 	return glm::vec2(r, c);
 }
 
+bool TileMap::isValidStep(glm::vec2 tileMatrixPosition) {
+	int currentRow = this->selectedTilePosition.x;
+	int currentColumn = this->selectedTilePosition.y;
+	int nextRow = tileMatrixPosition.x;
+	int nextColumn = tileMatrixPosition.y;
 
+	if (currentColumn != nextColumn && currentRow != nextRow) {
+		return false;
+	}
+	if (currentColumn + 1 < nextColumn || currentColumn > nextColumn + 1) {
+		return false;
+	}
+	if (currentRow + 1 < nextRow || currentRow > nextRow + 1) {
+		return false;
+	}
+	return true;
+}
 
+void TileMap::changePlayerDirection(glm::vec2 tileMatrixPosition) {
+	int currentRow = this->selectedTilePosition.x;
+	int currentColumn = this->selectedTilePosition.y;
+	int nextRow = tileMatrixPosition.x;
+	int nextColumn = tileMatrixPosition.y;
+	if (nextRow == currentRow && nextColumn > currentColumn) {
+		this->player->changeDirection(Player::SOUTH_EAST);
+	}
+	if (nextRow == currentRow && nextColumn < currentColumn) {
+		this->player->changeDirection(Player::NORTH_WEST);
+	}
+	if (nextColumn == currentColumn && nextRow > currentRow) {
+		this->player->changeDirection(Player::NORTH_EAST);
+	}
+	if (nextColumn == currentColumn && nextRow < currentRow) {
+		this->player->changeDirection(Player::SOUTH_WEST);
+	}
+}
 
 TileMap::~TileMap() {}
 

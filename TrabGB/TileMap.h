@@ -22,6 +22,8 @@ private:
 	glm::vec2 tileWalking(int r, int c, int direction);
 	void changeSelectedTileIfNeeded(glm::vec2 tileMatrixPosition);
 	glm::vec2 getRowAndColumnForMousePositionClick(int x, int y);
+	void changePlayerDirection(glm::vec2 tileMatrixPosition);
+	bool isValidStep(glm::vec2 tileMatrixPosition);
 	Tile* tiles[NUMBER_OF_TILES_VERTICALLY][NUMBER_OF_TILES_HORIZONTALLY];
 	float defaultTileHeight;
 	float defaultTileWidth;
