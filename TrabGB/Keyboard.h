@@ -1,6 +1,3 @@
-#ifndef TWITCH_KEYBOARD
-#define TWITCH_KEYBOARD
-
 #include "GLFW/glfw3.h"
 
 class Keyboard
@@ -16,5 +13,3 @@ private:
 	static bool keysDown[];
 	static bool keysUp[];
 };
-
-#endif

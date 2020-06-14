@@ -1,7 +1,7 @@
 #include "Player.h"
 
 
-Player::Player(float height, float width, Tile* currentTile) : GameObject(height, width, currentTile) {
+Player::Player(float height, float width, Tile* currentTile) : GameObject(height, width, currentTile, "assets/Nordeste.png") {
 	this->textures[NORTH_WEST] = new Texture("assets/Noroeste.png");
 	this->textures[NORTH_EAST] = new Texture("assets/Nordeste.png");
 	this->textures[SOUTH_WEST] = new Texture("assets/Sudoeste.png");
@@ -15,3 +15,4 @@ void Player::changeDirection(int direction) {
 void Player::setCurrentTile(Tile* selectedTile) {
 	this->currentTile = selectedTile;
 }
+

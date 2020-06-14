@@ -1,23 +1,32 @@
 #include "TileMap.h"
 //NOMES: JOAO DACOL SOARES E NICOLAS GRISA PROKOPETZ
 int textureMap[16][16] = {
-{10, 10, 10, 10, 10, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21},
-{10, 21, 21, 21, 21, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21},
-{10, 21, 21, 21, 21, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21},
-{10, 21, 21, 21, 21, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21},
-{10, 21, 21, 21, 21, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21},
-{10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 21, 21, 21, 21},
-{10, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21},
-{10, 21, 21, 21, 21, 21, 10, 10, 10, 21, 21, 21, 21, 21, 21, 21},
-{10, 10, 10, 10, 10, 21, 10, 21, 10, 21, 21, 21, 21, 21, 21, 21},
-{21, 21, 21, 21, 10, 10, 10, 21, 10, 10, 10, 10, 21, 21, 21, 21},
-{21, 21, 21, 21, 10, 21, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21},
-{21, 21, 21, 21, 10, 21, 10, 21, 21, 21, 21, 10, 10, 10, 10, 10},
+{21, 10, 10, 10, 10, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21, 30},
+{21, 10, 21, 21, 21, 10, 30, 21, 21, 10, 10, 10, 10, 10, 10, 21},
+{21, 10, 21, 21, 21, 10, 21, 21, 21, 10, 21, 21, 21, 21, 10, 21},
+{21, 10, 21, 21, 21, 10, 21, 21, 21, 10, 21, 21, 21, 21, 10, 21},
+{21, 10, 21, 21, 21, 10, 21, 21, 21, 10, 21, 21, 21, 21, 10, 21},
+{21, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 21, 21, 10, 21},
+{21, 10, 21, 21, 21, 21, 10, 21, 21, 21, 21, 21, 21, 21, 10, 21},
+{21, 10, 21, 21, 21, 21, 10, 10, 10, 21, 21, 21, 21, 30, 30, 30},
+{21, 10, 10, 10, 10, 21, 10, 21, 10, 21, 21, 21, 21, 30, 31, 30},
+{30, 21, 21, 21, 10, 10, 10, 21, 10, 10, 10, 10, 21, 30, 30, 30},
+{10, 21, 21, 21, 10, 21, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21},
+{10, 21, 21, 21, 10, 21, 10, 21, 21, 21, 21, 10, 10, 10, 10, 10},
 {10, 10, 10, 10, 10, 21, 10, 10, 10, 10, 10, 10, 21, 10, 21, 21},
 {21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 10, 21, 21},
-{10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 21, 21},
+{10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 30, 21},
 {21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21}
 };
+
+bool hasCollisionWithProp(int nextColumn, int nextRow) {
+	if (textureMap[nextColumn][nextRow] == 21) {
+		return true;
+	}
+	return false;
+}
+
+
 TileSet* tileSet;
 //util
 float calculateArea(float v1x, float v2x, float v3x, float v1y, float v2y, float v3y) {
@@ -28,6 +37,7 @@ float calculateArea(float v1x, float v2x, float v3x, float v1y, float v2y, float
 }
 // public
 TileMap::TileMap() {
+
 	tileSet = new TileSet("assets/handpainted.png", 4, 4);
 	this->defaultTileHeight = 32.0f;
 	this->defaultTileWidth = 64.0f;
@@ -44,32 +54,54 @@ TileMap::TileMap() {
 	tileSet->unbindTexture();
 
 
-	this->player = new Player(75, 50, this->tiles[0][0]);
+	this->player = new Player(40, 25, this->tiles[0][0]);
 
 
 	this->selectedTilePosition = glm::vec2(0, 0);
 	this->selectedTile = this->tiles[0][0];
+
+	for (int i = 0; i < this->NUMBER_OF_TILES_VERTICALLY; i++) {
+		for (int j = this->NUMBER_OF_TILES_HORIZONTALLY; j >= 0; j--) {
+			if (textureMap[j][i] == 21) {
+				props[i][j] = new GameObject(60, 30, tiles[i][j], "assets/tree.png");
+			}
+		}
+	}
+	this->keyPosition = glm::vec2(14, 8);
+	props[14][8] = new GameObject(30, 30, tiles[14][8], "assets/key.png");
+	props[6][1] = new GameObject(35, 20, tiles[6][1], "assets/portal_desligado.png");
+	props[0][9] = new GameObject(35, 20, tiles[0][9], "assets/portal.png");
+	props[14][14] = new GameObject(35, 20, tiles[14][14], "assets/portal.png");
+	props[15][0] = new GameObject(35, 20, tiles[15][0], "assets/portal.png");
+
+
+
 }
 
-void TileMap::onMouseClick(double x, double y) {
+glm::vec2 TileMap::onMouseClick(double x, double y) {
 	glm::vec2 tileMatrixPosition = this->getRowAndColumnForMousePositionClick(x, y);
 	if (!this->hasCollision(x, y)) {
 		tileMatrixPosition = tileWalkingToCorrectDirection(x, y);
 	}
 	if (!this->isValidStep(tileMatrixPosition)) {
-		return;
+		return glm::vec2();
 	}
 	this->changePlayerDirection(tileMatrixPosition);
 	this->changeSelectedTileIfNeeded(tileMatrixPosition);
+	return tileMatrixPosition;
 }
 
 
-void TileMap::onKeyboardClick(int direction) {
+glm::vec2 TileMap::onKeyboardClick(int direction) {
 	int r = this->selectedTilePosition.x;
 	int c = this->selectedTilePosition.y;
 	glm::vec2 values = tileWalking(r, c, direction);
+	if (hasCollisionWithProp(values.y, values.x)) {
+		return glm::vec2();
+	}
 	this->player->changeDirection(direction);
 	this->changeSelectedTileIfNeeded(values);
+	return values;
 }
 
 void TileMap::draw() {
@@ -81,6 +113,14 @@ void TileMap::draw() {
 	}
 	tileSet->unbindTexture();
 	player->draw();
+	for (int i = 0; i < this->NUMBER_OF_TILES_VERTICALLY; i++) {
+		for (int j = 0; j < this->NUMBER_OF_TILES_HORIZONTALLY; j++) {
+			if (props[j][i]) {
+				props[j][i]->draw();
+			}
+		}
+	}
+
 }
 
 //private
@@ -199,12 +239,17 @@ glm::vec2 TileMap::getRowAndColumnForMousePositionClick(int x, int y) {
 	return glm::vec2(r, c);
 }
 
+
+
 bool TileMap::isValidStep(glm::vec2 tileMatrixPosition) {
 	int currentRow = this->selectedTilePosition.x;
 	int currentColumn = this->selectedTilePosition.y;
 	int nextRow = tileMatrixPosition.x;
 	int nextColumn = tileMatrixPosition.y;
 
+	if (hasCollisionWithProp(nextColumn, nextRow)) {
+		return false;
+	}
 	if (currentColumn != nextColumn && currentRow != nextRow) {
 		return false;
 	}

@@ -1,6 +1,3 @@
-#ifndef TWITCH_MOUSE
-#define TWITCH_MOUSE
-
 #include "GLFW/glfw3.h"
 
 class Mouse {
@@ -23,5 +20,3 @@ private:
 	static bool buttonsDown[];
 	static bool buttonsUp[];
 };
-
-#endif

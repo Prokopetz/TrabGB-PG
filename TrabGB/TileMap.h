@@ -11,9 +11,8 @@ public:
 	TileMap();
 	~TileMap();
 	void draw();
-	void onMouseClick(double x, double y);
-	void onKeyboardClick(int direction);
-private:
+	glm::vec2 onMouseClick(double x, double y);
+	glm::vec2 onKeyboardClick(int direction);
 	Player* player;
 	int getTileXPositionFromMatrix(int r, int c);
 	int getTileYPositionFromMatrix(int r, int c);
@@ -30,5 +29,7 @@ private:
 	Tile* selectedTile;
 	glm::vec4 lastSelectedTileColor;
 	glm::vec2 selectedTilePosition;
+	GameObject* props[NUMBER_OF_TILES_VERTICALLY][NUMBER_OF_TILES_HORIZONTALLY];
+	glm::vec2 keyPosition;
 };
 

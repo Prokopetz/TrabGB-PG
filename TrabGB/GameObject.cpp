@@ -2,11 +2,11 @@
 
 //NOMES: JOAO DACOL SOARES E NICOLAS GRISA PROKOPETZ
 
-GameObject::GameObject(float height, float width, Tile* currentTile) {
+GameObject::GameObject(float height, float width, Tile* currentTile, const char* texturePath) {
     this->height = height;
     this->width = width;
     this->currentTile = currentTile;
-    texture = new Texture("assets/Norte.png");
+    texture = new Texture(texturePath);
    
     this->shader = new Shader("vertex.shader", "fragment.shader");
 
@@ -57,7 +57,7 @@ void GameObject::draw() {
 
     glm::mat4 transform = glm::mat4(1.0f);
     
-    transform = glm::translate(transform, glm::vec3(((this->currentTile->getPosX() + 8) / (Window::WINDOW_WIDTH / 2)) - 1, ((this->currentTile->getPosY() + 8) / (Window::WINDOW_HEIGHT / 2)) - 1, 0.0f));
+    transform = glm::translate(transform, glm::vec3(((this->currentTile->getPosX() + 12) / (Window::WINDOW_WIDTH / 2)) - 1, ((this->currentTile->getPosY() + 12) / (Window::WINDOW_HEIGHT / 2)) - 1, 0.0f));
 
     shader->use();
     texture->bind();

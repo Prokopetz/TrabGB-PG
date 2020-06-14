@@ -10,7 +10,7 @@
 
 class GameObject {
 public:
-	GameObject(float height, float width, Tile* currentTile);
+	GameObject(float height, float width, Tile* currentTile, const char* texturePath);
 	~GameObject();
 	void draw();
 protected:
