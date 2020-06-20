@@ -26,7 +26,6 @@ bool hasCollisionWithProp(int nextColumn, int nextRow) {
 	return false;
 }
 
-
 TileSet* tileSet;
 //util
 float calculateArea(float v1x, float v2x, float v3x, float v1y, float v2y, float v3y) {
@@ -53,12 +52,10 @@ TileMap::TileMap() {
 	}
 	tileSet->unbindTexture();
 
+	this->player = new Player(40, 25, this->tiles[0][14]);
 
-	this->player = new Player(40, 25, this->tiles[0][0]);
-
-
-	this->selectedTilePosition = glm::vec2(0, 0);
-	this->selectedTile = this->tiles[0][0];
+	this->selectedTile = this->tiles[0][14];
+	this->selectedTilePosition = glm::vec2(0, 14);
 
 	for (int i = 0; i < this->NUMBER_OF_TILES_VERTICALLY; i++) {
 		for (int j = this->NUMBER_OF_TILES_HORIZONTALLY; j >= 0; j--) {
@@ -70,12 +67,9 @@ TileMap::TileMap() {
 	this->keyPosition = glm::vec2(14, 8);
 	props[14][8] = new GameObject(30, 30, tiles[14][8], "assets/key.png");
 	props[6][1] = new GameObject(35, 20, tiles[6][1], "assets/portal_desligado.png");
-	props[0][9] = new GameObject(35, 20, tiles[0][9], "assets/portal.png");
-	props[14][14] = new GameObject(35, 20, tiles[14][14], "assets/portal.png");
-	props[15][0] = new GameObject(35, 20, tiles[15][0], "assets/portal.png");
-
-
-
+	props[0][9] = new GameObject(35, 20, tiles[0][9], "assets/portal_desligado.png");
+	props[14][14] = new GameObject(35, 20, tiles[14][14], "assets/portal_desligado.png");
+	props[15][0] = new GameObject(35, 20, tiles[15][0], "assets/portal_desligado.png");
 }
 
 glm::vec2 TileMap::onMouseClick(double x, double y) {
@@ -120,11 +114,18 @@ void TileMap::draw() {
 			}
 		}
 	}
+}
 
+void TileMap::changeTileToLava(int c, int r) {
+	textureMap[r][c] = 1;
+	glm::vec2 offset = tileSet->getTile(1);
+	int posX = this->tiles[c][r]->getPosX();
+	int posY = this->tiles[c][r]->getPosY();
+
+	this->tiles[c][r] = new Tile(this->defaultTileHeight, this->defaultTileWidth, posX, posY, offset, 0, tileSet->getNormalizedTextureWidth(), tileSet->getNormalizedTextureHeight());
 }
 
 //private
-
 int TileMap::getTileXPositionFromMatrix(int r, int c) {
 	//return r * this->defaultTileWidth + c * this->defaultTileHeight;
 	return this->defaultTileWidth / 2 * (c + r);
@@ -135,7 +136,6 @@ int TileMap::getTileYPositionFromMatrix(int r, int c) {
 	return  (this->defaultTileHeight / 2 * (r - c)) + (this->defaultTileHeight * this->NUMBER_OF_TILES_VERTICALLY / 1.3) - this->defaultTileHeight / 2;
 
 }
-
 
 bool TileMap::hasCollision(int x, int y) {
 	glm::vec2 rowAndColumn = this->getRowAndColumnForMousePositionClick(x, y);
@@ -238,8 +238,6 @@ glm::vec2 TileMap::getRowAndColumnForMousePositionClick(int x, int y) {
 	std::cout << r << c << std::endl;
 	return glm::vec2(r, c);
 }
-
-
 
 bool TileMap::isValidStep(glm::vec2 tileMatrixPosition) {
 	int currentRow = this->selectedTilePosition.x;

@@ -4,6 +4,10 @@
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
+#include <chrono>
+
+using namespace std::chrono;
+
 class GameManager {
 public:
 	GameManager();
@@ -13,5 +17,9 @@ public:
 private:
 	TileMap* tileMap;
 	bool hasKey;
+	bool verifyIfPositionIsKeyPosition(glm::vec2 newPosition);
+	void openPortals();
+	milliseconds lastFrameTime;
+	int currentLineBeingTransformed = 15;
 };
 
