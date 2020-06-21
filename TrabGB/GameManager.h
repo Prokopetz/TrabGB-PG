@@ -15,19 +15,21 @@ public:
 	void onKeyboardClick(int direction);
 	void onGameLoop();
 	void onGameOver();
+	void onGameWin();
 	void draw();
 	void restartGame();
 	bool isGameOver = false;
 	bool won = false;
 private:
 	Menu* gameOverMenu;
+	Menu* winMenu;
 	TileMap* tileMap;
 	bool hasKey;
 	bool verifyIfPositionIsKeyPosition(glm::vec2 newPosition);
 	void openPortals();
 	milliseconds lastFrameTime;
 	int currentLineBeingTransformed = 15;
-	int possiblePortals[4][2] = { {6,1}, {0,9}, {14,14}, {15,0} };
+	int possiblePortals[4][2] = { {6,1}, {0,9}, {14,14}, {14,0} };
 	int portal1;
 	int portal2;
 

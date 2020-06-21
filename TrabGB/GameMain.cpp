@@ -16,23 +16,33 @@ int main() {
             gameManager->onMouseClick(Mouse::GetMouseX(), Mouse::GetMouseY());
         }
         if (Keyboard::KeyDown(GLFW_KEY_W) || Keyboard::KeyDown(GLFW_KEY_UP)) {
-            gameManager->onKeyboardClick(Player::NORTH_WEST);
+            if (!gameManager->isGameOver) {
+                gameManager->onKeyboardClick(Player::NORTH_WEST);
+            }
         }
         if (Keyboard::KeyDown(GLFW_KEY_RIGHT) || Keyboard::KeyDown(GLFW_KEY_D)) {
-            gameManager->onKeyboardClick(Player::NORTH_EAST);
+            if (!gameManager->isGameOver) {
+                gameManager->onKeyboardClick(Player::NORTH_EAST);
+            }
         }
         if (Keyboard::KeyDown(GLFW_KEY_LEFT) || Keyboard::KeyDown(GLFW_KEY_A)) {
-            gameManager->onKeyboardClick(Player::SOUTH_WEST);
+            if (!gameManager->isGameOver) {
+                gameManager->onKeyboardClick(Player::SOUTH_WEST);
+            }
         }
         if (Keyboard::KeyDown(GLFW_KEY_DOWN) || Keyboard::KeyDown(GLFW_KEY_S)) {
-            gameManager->onKeyboardClick(Player::SOUTH_EAST);
+            if (!gameManager->isGameOver) {
+                gameManager->onKeyboardClick(Player::SOUTH_EAST);
+            }
         }
         if (Keyboard::KeyDown(GLFW_KEY_X)) {
-            gameManager->restartGame();
+            if (gameManager->isGameOver || gameManager->won) {
+                gameManager->restartGame();
+            }
         }
         gameManager->onGameLoop();
         if (gameManager->won) {
-            
+            gameManager->onGameWin();
         }
         else if (!gameManager->isGameOver) {
             gameManager->draw();

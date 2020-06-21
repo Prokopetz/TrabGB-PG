@@ -60,7 +60,7 @@ TileMap::TileMap() {
 	for (int i = 0; i < this->NUMBER_OF_TILES_VERTICALLY; i++) {
 		for (int j = this->NUMBER_OF_TILES_HORIZONTALLY; j >= 0; j--) {
 			if (textureMap[j][i] == 21) {
-				props[i][j] = new GameObject(60, 30, tiles[i][j], "assets/tree.png");
+				props[i][j] = new GameObject(60, 45, tiles[i][j], "assets/tree.png");
 			}
 		}
 	}
@@ -150,6 +150,11 @@ void TileMap::changePlayerDirection(glm::vec2 tileMatrixPosition) {
 	}
 	if (nextColumn == currentColumn && nextRow < currentRow) {
 		this->player->changeDirection(Player::SOUTH_WEST);
+	}
+}
+void TileMap::burnTree(int c, int r) {
+	if (textureMap[r][c] == 21) {
+		props[c][r] = new GameObject(50, 30, tiles[c][r], "assets/burned.png");
 	}
 }
 

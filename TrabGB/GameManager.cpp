@@ -1,6 +1,7 @@
 #include "GameManager.h"
 GameManager::GameManager() {
 	gameOverMenu = new Menu("assets/gameover.jpg");
+	winMenu = new Menu("assets/win.jpg");
 	this->tileMap = new TileMap();
 	hasKey = false;
 }
@@ -23,8 +24,9 @@ void GameManager::onGameLoop() {
 	milliseconds now = duration_cast<milliseconds>(
 		system_clock::now().time_since_epoch()
 	);
-	if (now - lastFrameTime >= milliseconds(1300) && hasKey && currentLineBeingTransformed > -1) {
+	if (now - lastFrameTime >= milliseconds(1000) && hasKey && currentLineBeingTransformed > -1) {
 		for (int i = 0; i < 16; i++) {
+			tileMap->burnTree(i, currentLineBeingTransformed);
 			tileMap->changeTileToLava(i, currentLineBeingTransformed);
 		}
 		lastFrameTime = duration_cast<milliseconds>(
@@ -38,6 +40,9 @@ void GameManager::draw() {
 }
 void GameManager::onGameOver() {
 	gameOverMenu->draw();
+}
+void GameManager::onGameWin() {
+	winMenu->draw();
 }
 void GameManager::restartGame() {
 	this->tileMap = new TileMap();
