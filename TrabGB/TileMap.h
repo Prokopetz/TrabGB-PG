@@ -4,23 +4,19 @@
 #include "TileSet.h"
 #include "GameObject.h"
 #include "Player.h"
+#include "DiamondView.h"
 class TileMap {
 public:
 	static const int NUMBER_OF_TILES_HORIZONTALLY = 16;
 	static const int NUMBER_OF_TILES_VERTICALLY = 16;
+	DiamondView* view;
 	TileMap();
 	~TileMap();
 	void draw();
 	glm::vec2 onMouseClick(double x, double y);
 	glm::vec2 onKeyboardClick(int direction);
 	Player* player;
-	int getTileXPositionFromMatrix(int r, int c);
-	int getTileYPositionFromMatrix(int r, int c);
-	bool hasCollision(int x, int y);
-	glm::vec2 tileWalkingToCorrectDirection(int x, int y);
-	glm::vec2 tileWalking(int r, int c, int direction);
 	void changeSelectedTileIfNeeded(glm::vec2 tileMatrixPosition);
-	glm::vec2 getRowAndColumnForMousePositionClick(int x, int y);
 	void changePlayerDirection(glm::vec2 tileMatrixPosition);
 	bool isValidStep(glm::vec2 tileMatrixPosition);
 	void changeTileToLava(int c, int r);
