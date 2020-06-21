@@ -43,9 +43,8 @@ void GameManager::openPortals() {
 }
 
 void GameManager::onGameLoop() {
-	Tile* playerCurrentTile = tileMap->selectedTile;
-	int tileC = playerCurrentTile->getColumn();
-	int tileR = playerCurrentTile->getRow();
+	int tileC = this->tileMap->player->getCurrentTile()->getColumn();
+	int tileR = this->tileMap->player->getCurrentTile()->getRow();
 
 	if (tileMap->isPlayerSteppingOnLava(tileC, tileR)) {
 		isGameOver = true;

@@ -50,9 +50,6 @@ TileMap::TileMap() {
 
 	this->player = new Player(40, 25, this->tiles[0][14]);
 
-	this->selectedTile = this->tiles[0][14];
-	this->selectedTilePosition = glm::vec2(0, 14);
-
 	for (int i = 0; i < this->NUMBER_OF_TILES_VERTICALLY; i++) {
 		for (int j = this->NUMBER_OF_TILES_HORIZONTALLY; j >= 0; j--) {
 			if (textureMap[j][i] == 21) {
@@ -83,8 +80,8 @@ glm::vec2 TileMap::onMouseClick(double x, double y) {
 
 
 glm::vec2 TileMap::onKeyboardClick(int direction) {
-	int r = this->selectedTilePosition.x;
-	int c = this->selectedTilePosition.y;
+	int r = this->player->getCurrentTile()->getColumn();
+	int c = this->player->getCurrentTile()->getRow();
 	glm::vec2 values = view->tileWalking(r, c, direction);
 	if (hasCollisionWithProp(values.y, values.x)) {
 		return glm::vec2();
@@ -137,18 +134,13 @@ void TileMap::changeSelectedTileIfNeeded(glm::vec2 tileMatrixPosition) {
 	int r = int(tileMatrixPosition.x);
 	int c = int(tileMatrixPosition.y);
 	if (r < NUMBER_OF_TILES_VERTICALLY && c < NUMBER_OF_TILES_HORIZONTALLY && r >= 0 && c >= 0) {
-		this->selectedTilePosition = glm::vec2(r, c);
-		if (this->selectedTile != nullptr) {
-		}
-		this->selectedTile = this->tiles[r][c];
-		this->player->setCurrentTile(selectedTile);
-
+		this->player->setCurrentTile(this->tiles[r][c]);
 	}
 }
 
 bool TileMap::isValidStep(glm::vec2 tileMatrixPosition) {
-	int currentRow = this->selectedTilePosition.x;
-	int currentColumn = this->selectedTilePosition.y;
+	int currentRow = this->player->getCurrentTile()->getColumn();
+	int currentColumn = this->player->getCurrentTile()->getRow();
 	int nextRow = tileMatrixPosition.x;
 	int nextColumn = tileMatrixPosition.y;
 
@@ -168,8 +160,8 @@ bool TileMap::isValidStep(glm::vec2 tileMatrixPosition) {
 }
 
 void TileMap::changePlayerDirection(glm::vec2 tileMatrixPosition) {
-	int currentRow = this->selectedTilePosition.x;
-	int currentColumn = this->selectedTilePosition.y;
+	int currentRow = this->player->getCurrentTile()->getColumn();
+	int currentColumn = this->player->getCurrentTile()->getRow();
 	int nextRow = tileMatrixPosition.x;
 	int nextColumn = tileMatrixPosition.y;
 	if (nextRow == currentRow && nextColumn > currentColumn) {
