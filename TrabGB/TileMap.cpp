@@ -3,7 +3,7 @@
 
 //utils
 int textureMapDefault[16][16] = {
-{21, 10, 10, 10, 10, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21, 30},
+{21, 10, 10, 10, 10, 10, 21, 21, 21, 21, 21, 21, 21, 21, 30, 21},
 {21, 10, 21, 21, 21, 10, 30, 21, 21, 10, 10, 10, 10, 10, 10, 21},
 {21, 10, 21, 21, 21, 10, 21, 21, 21, 10, 21, 21, 21, 21, 10, 21},
 {21, 10, 21, 21, 21, 10, 21, 21, 21, 10, 21, 21, 21, 21, 10, 21},
@@ -69,7 +69,7 @@ TileMap::TileMap() {
 	props[6][1] = new GameObject(35, 20, tiles[6][1], "assets/portal_desligado.png");
 	props[0][9] = new GameObject(35, 20, tiles[0][9], "assets/portal_desligado.png");
 	props[14][14] = new GameObject(35, 20, tiles[14][14], "assets/portal_desligado.png");
-	props[15][0] = new GameObject(35, 20, tiles[15][0], "assets/portal_desligado.png");
+	props[14][0] = new GameObject(35, 20, tiles[14][0], "assets/portal_desligado.png");
 }
 
 void TileMap::draw() {
