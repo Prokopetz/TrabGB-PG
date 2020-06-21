@@ -1,12 +1,13 @@
 ﻿  GameManager.cpp
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\GameManager.cpp(22,16): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\GameManager.cpp(64,16): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
           with
           [
               T=float
           ]
-C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\GameManager.cpp(23,13): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\GameManager.cpp(65,13): warning C4244: 'inicializando': conversão de 'T' para 'int', possível perda de dados
           with
           [
               T=float
           ]
+C:\Users\Proko\Desktop\TrabGB-PG\TrabGB\GameManager.cpp(77,13): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
   TrabGB.vcxproj -> C:\Users\Proko\Desktop\TrabGB-PG\Debug\TrabGB.exe

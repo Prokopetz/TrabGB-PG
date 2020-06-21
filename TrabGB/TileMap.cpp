@@ -1,6 +1,8 @@
 #include "TileMap.h"
 //NOMES: JOAO DACOL SOARES E NICOLAS GRISA PROKOPETZ
-int textureMap[16][16] = {
+
+//utils
+int textureMapDefault[16][16] = {
 {21, 10, 10, 10, 10, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21, 30},
 {21, 10, 21, 21, 21, 10, 30, 21, 21, 10, 10, 10, 10, 10, 10, 21},
 {21, 10, 21, 21, 21, 10, 21, 21, 21, 10, 21, 21, 21, 21, 10, 21},
@@ -11,7 +13,7 @@ int textureMap[16][16] = {
 {21, 10, 21, 21, 21, 21, 10, 10, 10, 21, 21, 21, 21, 30, 30, 30},
 {21, 10, 10, 10, 10, 21, 10, 21, 10, 21, 21, 21, 21, 30, 31, 30},
 {30, 21, 21, 21, 10, 10, 10, 21, 10, 10, 10, 10, 21, 30, 30, 30},
-{10, 21, 21, 21, 10, 21, 10, 21, 21, 21, 21, 21, 21, 21, 21, 21},
+{10, 21, 21, 21, 10, 21, 10, 21, 21, 21, 21, 21, 21, 21, 10, 21},
 {10, 21, 21, 21, 10, 21, 10, 21, 21, 21, 21, 10, 10, 10, 10, 10},
 {10, 10, 10, 10, 10, 21, 10, 10, 10, 10, 10, 10, 21, 10, 21, 21},
 {21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 10, 21, 21},
@@ -19,13 +21,13 @@ int textureMap[16][16] = {
 {21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21}
 };
 
+int textureMap[16][16];
 bool hasCollisionWithProp(int nextColumn, int nextRow) {
 	if (textureMap[nextColumn][nextRow] == 21) {
 		return true;
 	}
 	return false;
 }
-
 TileSet* tileSet;
 
 // public
@@ -33,6 +35,11 @@ TileMap::TileMap() {
 	tileSet = new TileSet("assets/handpainted.png", 4, 4);
 	this->defaultTileHeight = 32.0f;
 	this->defaultTileWidth = 64.0f;
+	for (int i = 0; i < this->NUMBER_OF_TILES_VERTICALLY; i++) {
+		for (int j = 0; j < this->NUMBER_OF_TILES_HORIZONTALLY; j++) {
+			textureMap[i][j] = textureMapDefault[i][j];
+		}
+	}
 	this->view = new DiamondView(defaultTileHeight, defaultTileWidth, NUMBER_OF_TILES_VERTICALLY, NUMBER_OF_TILES_HORIZONTALLY);
 
 	for (int i = 0; i < this->NUMBER_OF_TILES_VERTICALLY; i++) {
@@ -65,32 +72,6 @@ TileMap::TileMap() {
 	props[15][0] = new GameObject(35, 20, tiles[15][0], "assets/portal_desligado.png");
 }
 
-glm::vec2 TileMap::onMouseClick(double x, double y) {
-	glm::vec2 tileMatrixPosition = view->getRowAndColumnForMousePositionClick(x, y);
-	if (!view->hasCollision(x, y)) {
-		tileMatrixPosition = view->tileWalkingToCorrectDirection(x, y);
-	}
-	if (!this->isValidStep(tileMatrixPosition)) {
-		return glm::vec2();
-	}
-	this->changePlayerDirection(tileMatrixPosition);
-	this->changeSelectedTileIfNeeded(tileMatrixPosition);
-	return tileMatrixPosition;
-}
-
-
-glm::vec2 TileMap::onKeyboardClick(int direction) {
-	int r = this->player->getCurrentTile()->getColumn();
-	int c = this->player->getCurrentTile()->getRow();
-	glm::vec2 values = view->tileWalking(r, c, direction);
-	if (hasCollisionWithProp(values.y, values.x)) {
-		return glm::vec2();
-	}
-	this->player->changeDirection(direction);
-	this->changeSelectedTileIfNeeded(values);
-	return values;
-}
-
 void TileMap::draw() {
 	tileSet->bindTexture();
 	for (int i = 0; i < this->NUMBER_OF_TILES_VERTICALLY; i++) {
@@ -109,6 +90,30 @@ void TileMap::draw() {
 	}
 }
 
+glm::vec2 TileMap::onMouseClick(double x, double y) {
+	glm::vec2 tileMatrixPosition = view->getRowAndColumnForMousePositionClick(x, y);
+	if (!view->hasCollision(x, y)) {
+		tileMatrixPosition = view->tileWalkingToCorrectDirection(x, y);
+	}
+	if (!this->isValidStep(tileMatrixPosition)) {
+		return glm::vec2();
+	}
+	this->changePlayerDirection(tileMatrixPosition);
+	this->changeSelectedTileIfNeeded(tileMatrixPosition);
+	return tileMatrixPosition;
+}
+glm::vec2 TileMap::onKeyboardClick(int direction) {
+	int r = this->player->getCurrentTile()->getColumn();
+	int c = this->player->getCurrentTile()->getRow();
+	glm::vec2 values = view->tileWalking(r, c, direction);
+	if (hasCollisionWithProp(values.y, values.x)) {
+		return glm::vec2();
+	}
+	this->player->changeDirection(direction);
+	this->changeSelectedTileIfNeeded(values);
+	return values;
+}
+
 void TileMap::changeTileToLava(int c, int r) {
 	textureMap[r][c] = 1;
 	glm::vec2 offset = tileSet->getTile(1);
@@ -122,14 +127,6 @@ void TileMap::changeTileToLava(int c, int r) {
 	this->tiles[c][r]->setRow(row);
 
 }
-
-bool TileMap::isPlayerSteppingOnLava(int c, int r) {
-	if (textureMap[r][c] == 1) {
-		return true;
-	}
-	return false;
-}
-
 void TileMap::changeSelectedTileIfNeeded(glm::vec2 tileMatrixPosition) {
 	int r = int(tileMatrixPosition.x);
 	int c = int(tileMatrixPosition.y);
@@ -137,7 +134,31 @@ void TileMap::changeSelectedTileIfNeeded(glm::vec2 tileMatrixPosition) {
 		this->player->setCurrentTile(this->tiles[r][c]);
 	}
 }
+void TileMap::changePlayerDirection(glm::vec2 tileMatrixPosition) {
+	int currentRow = this->player->getCurrentTile()->getColumn();
+	int currentColumn = this->player->getCurrentTile()->getRow();
+	int nextRow = tileMatrixPosition.x;
+	int nextColumn = tileMatrixPosition.y;
+	if (nextRow == currentRow && nextColumn > currentColumn) {
+		this->player->changeDirection(Player::SOUTH_EAST);
+	}
+	if (nextRow == currentRow && nextColumn < currentColumn) {
+		this->player->changeDirection(Player::NORTH_WEST);
+	}
+	if (nextColumn == currentColumn && nextRow > currentRow) {
+		this->player->changeDirection(Player::NORTH_EAST);
+	}
+	if (nextColumn == currentColumn && nextRow < currentRow) {
+		this->player->changeDirection(Player::SOUTH_WEST);
+	}
+}
 
+bool TileMap::isPlayerSteppingOnLava(int c, int r) {
+	if (textureMap[r][c] == 1) {
+		return true;
+	}
+	return false;
+}
 bool TileMap::isValidStep(glm::vec2 tileMatrixPosition) {
 	int currentRow = this->player->getCurrentTile()->getColumn();
 	int currentColumn = this->player->getCurrentTile()->getRow();
@@ -157,25 +178,6 @@ bool TileMap::isValidStep(glm::vec2 tileMatrixPosition) {
 		return false;
 	}
 	return true;
-}
-
-void TileMap::changePlayerDirection(glm::vec2 tileMatrixPosition) {
-	int currentRow = this->player->getCurrentTile()->getColumn();
-	int currentColumn = this->player->getCurrentTile()->getRow();
-	int nextRow = tileMatrixPosition.x;
-	int nextColumn = tileMatrixPosition.y;
-	if (nextRow == currentRow && nextColumn > currentColumn) {
-		this->player->changeDirection(Player::SOUTH_EAST);
-	}
-	if (nextRow == currentRow && nextColumn < currentColumn) {
-		this->player->changeDirection(Player::NORTH_WEST);
-	}
-	if (nextColumn == currentColumn && nextRow > currentRow) {
-		this->player->changeDirection(Player::NORTH_EAST);
-	}
-	if (nextColumn == currentColumn && nextRow < currentRow) {
-		this->player->changeDirection(Player::SOUTH_WEST);
-	}
 }
 
 TileMap::~TileMap() {}

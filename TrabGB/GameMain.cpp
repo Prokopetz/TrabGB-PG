@@ -27,12 +27,18 @@ int main() {
         if (Keyboard::KeyDown(GLFW_KEY_DOWN) || Keyboard::KeyDown(GLFW_KEY_S)) {
             gameManager->onKeyboardClick(Player::SOUTH_EAST);
         }
+        if (Keyboard::KeyDown(GLFW_KEY_X)) {
+            gameManager->restartGame();
+        }
         gameManager->onGameLoop();
         if (gameManager->won) {
             
         }
         else if (!gameManager->isGameOver) {
             gameManager->draw();
+        }
+        else {
+            gameManager->onGameOver();
         }
         window->onAfterRender();
     }

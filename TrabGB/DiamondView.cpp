@@ -7,7 +7,7 @@ float calculateArea(float v1x, float v2x, float v3x, float v1y, float v2y, float
 		) / 2;
 }
 
-DiamondView::DiamondView(int defaultTileHeight, int defaultTileWidth, int numberOfTilesVertically, int numberOfTilesHorizontally) {
+DiamondView::DiamondView(float defaultTileHeight, float defaultTileWidth, int numberOfTilesVertically, int numberOfTilesHorizontally) {
 	this->defaultTileHeight = defaultTileHeight;
 	this->defaultTileWidth = defaultTileWidth;
 	this->numberOfTilesVertically = numberOfTilesVertically;
