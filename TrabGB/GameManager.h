@@ -13,7 +13,10 @@ public:
 	GameManager();
 	void onMouseClick(int x, int y);
 	void onKeyboardClick(int direction);
+	void onGameLoop();
 	void draw();
+	bool isGameOver = false;
+	bool won = false;
 private:
 	TileMap* tileMap;
 	bool hasKey;
@@ -21,5 +24,9 @@ private:
 	void openPortals();
 	milliseconds lastFrameTime;
 	int currentLineBeingTransformed = 15;
+	int possiblePortals[4][2] = { {6,1}, {0,9}, {14,14}, {15,0} };
+	int portal1;
+	int portal2;
+
 };
 

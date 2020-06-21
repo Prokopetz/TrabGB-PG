@@ -10,6 +10,7 @@ public:
 	Player(float height, float width, Tile* currentTile);
 	void setCurrentTile(Tile* selectedTile);
 	void changeDirection(int direction);
+	Tile* getCurrentTile();
 private:
 	Texture* textures[4];
 };

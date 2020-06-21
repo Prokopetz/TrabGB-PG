@@ -14,8 +14,13 @@ public:
 	void draw();
 	float getPosX();
 	float getPosY();
-
+	void setColumn(int c);
+	void setRow(int r);
+	int getColumn();
+	int getRow();
 private:
+	int column;
+	int row;
 	Shader* shader;
 	unsigned int vao;
 	int textureId;

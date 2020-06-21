@@ -48,6 +48,8 @@ TileMap::TileMap() {
 			int id = textureMap[j][i];
 			glm::vec2 offset = tileSet->getTile(id);
 			this->tiles[i][j] = new Tile(this->defaultTileHeight, this->defaultTileWidth, x, y, offset, 0, tileSet->getNormalizedTextureWidth(), tileSet->getNormalizedTextureHeight());
+			this->tiles[i][j]->setColumn(i);
+			this->tiles[i][j]->setRow(j);
 		}
 	}
 	tileSet->unbindTexture();
@@ -122,7 +124,19 @@ void TileMap::changeTileToLava(int c, int r) {
 	int posX = this->tiles[c][r]->getPosX();
 	int posY = this->tiles[c][r]->getPosY();
 
+	int col = this->tiles[c][r]->getColumn();
+	int row = this->tiles[c][r]->getRow();
 	this->tiles[c][r] = new Tile(this->defaultTileHeight, this->defaultTileWidth, posX, posY, offset, 0, tileSet->getNormalizedTextureWidth(), tileSet->getNormalizedTextureHeight());
+	this->tiles[c][r]->setColumn(col);
+	this->tiles[c][r]->setRow(row);
+
+}
+
+bool TileMap::isPlayerSteppingOnLava(int c, int r) {
+	if (textureMap[r][c] == 1) {
+		return true;
+	}
+	return false;
 }
 
 //private

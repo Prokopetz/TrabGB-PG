@@ -15,4 +15,7 @@ void Player::changeDirection(int direction) {
 void Player::setCurrentTile(Tile* selectedTile) {
 	this->currentTile = selectedTile;
 }
+Tile* Player::getCurrentTile() {
+	return this->currentTile;
+}
 

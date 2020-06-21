@@ -31,10 +31,8 @@ bool GameManager::verifyIfPositionIsKeyPosition(glm::vec2 newPosition) {
 }
 
 void GameManager::openPortals() {
-	int possiblePortals[4][2] = { {6,1}, {0,9}, {14,14}, {15,0} };
-
-	int portal1 = (rand() % 4);
-	int portal2 = (rand() % 4);
+	portal1 = (rand() % 3);
+	portal2 = (rand() % 3);
 
 	int portal1Positions[2] = { possiblePortals[portal1][0], possiblePortals[portal1][1] };
 
@@ -44,22 +42,36 @@ void GameManager::openPortals() {
 	tileMap->props[portal2Positions[0]][portal2Positions[1]] = new GameObject(35, 20, tileMap->tiles[portal2Positions[0]][portal2Positions[1]], "assets/portal.png");
 }
 
-void GameManager::draw() {
+void GameManager::onGameLoop() {
+	Tile* playerCurrentTile = tileMap->selectedTile;
+	int tileC = playerCurrentTile->getColumn();
+	int tileR = playerCurrentTile->getRow();
+
+	if (tileMap->isPlayerSteppingOnLava(tileC, tileR)) {
+		isGameOver = true;
+	}
+
+	int portal1Positions[2] = { possiblePortals[portal1][0], possiblePortals[portal1][1] };
+	int portal2Positions[2] = { possiblePortals[portal2][0], possiblePortals[portal2][1] };
+
+	if ((tileC == portal1Positions[0] && tileR == portal1Positions[1]) || (tileC == portal2Positions[0] && tileR == portal2Positions[1])) {
+		won = true;
+	}
+
 	milliseconds now = duration_cast<milliseconds>(
 		system_clock::now().time_since_epoch()
 	);
-	if (now - lastFrameTime >= milliseconds(1000) && hasKey && currentLineBeingTransformed > -1) {
+	if (now - lastFrameTime >= milliseconds(1500) && hasKey && currentLineBeingTransformed > -1) {
 		for (int i = 0; i < 16; i++) {
 			tileMap->changeTileToLava(i, currentLineBeingTransformed);
 		}
 		lastFrameTime = duration_cast<milliseconds>(
 			system_clock::now().time_since_epoch()
-		);
+			);
 		currentLineBeingTransformed -= 1;
 	}
+}
 
+void GameManager::draw() {
  	tileMap->draw();
-
-
-
 }

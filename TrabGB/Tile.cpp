@@ -80,3 +80,19 @@ float Tile::getPosX() {
 float Tile::getPosY() {
     return this->posY;
 }
+
+void Tile::setColumn(int c) {
+    this->column = c;
+}
+
+void Tile::setRow(int r) {
+    this->row = r;
+}
+
+int Tile::getColumn() {
+    return this->column;
+}
+
+int Tile::getRow() {
+    return this->row;
+}

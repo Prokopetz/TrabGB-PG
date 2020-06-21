@@ -24,6 +24,7 @@ public:
 	void changePlayerDirection(glm::vec2 tileMatrixPosition);
 	bool isValidStep(glm::vec2 tileMatrixPosition);
 	void changeTileToLava(int c, int r);
+	bool isPlayerSteppingOnLava(int c, int r);
 	Tile* tiles[NUMBER_OF_TILES_VERTICALLY][NUMBER_OF_TILES_HORIZONTALLY];
 	float defaultTileHeight;
 	float defaultTileWidth;
