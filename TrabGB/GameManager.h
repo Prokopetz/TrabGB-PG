@@ -24,7 +24,7 @@ private:
 	Menu* gameOverMenu;
 	Menu* winMenu;
 	TileMap* tileMap;
-	bool hasKey;
+	bool hasKey = false;
 	bool verifyIfPositionIsKeyPosition(glm::vec2 newPosition);
 	void openPortals();
 	milliseconds lastFrameTime;

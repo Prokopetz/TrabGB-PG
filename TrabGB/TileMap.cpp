@@ -40,12 +40,12 @@ TileMap::TileMap() {
 			textureMap[i][j] = textureMapDefault[i][j];
 		}
 	}
-	this->view = new DiamondView(defaultTileHeight, defaultTileWidth, NUMBER_OF_TILES_VERTICALLY, NUMBER_OF_TILES_HORIZONTALLY);
+	this->diamondView = new DiamondView(defaultTileHeight, defaultTileWidth, NUMBER_OF_TILES_VERTICALLY, NUMBER_OF_TILES_HORIZONTALLY);
 
 	for (int i = 0; i < this->NUMBER_OF_TILES_VERTICALLY; i++) {
 		for (int j = 0; j < this->NUMBER_OF_TILES_HORIZONTALLY; j++) {
-			int x = view->getTileXPositionFromMatrix(i, j);
-			int y = view->getTileYPositionFromMatrix(i, j);
+			int x = diamondView->getTileXPositionFromMatrix(i, j);
+			int y = diamondView->getTileYPositionFromMatrix(i, j);
 			int id = textureMap[j][i];
 			glm::vec2 offset = tileSet->getTile(id);
 			this->tiles[i][j] = new Tile(this->defaultTileHeight, this->defaultTileWidth, x, y, offset, 0, tileSet->getNormalizedTextureWidth(), tileSet->getNormalizedTextureHeight());
@@ -91,9 +91,9 @@ void TileMap::draw() {
 }
 
 glm::vec2 TileMap::onMouseClick(double x, double y) {
-	glm::vec2 tileMatrixPosition = view->getRowAndColumnForMousePositionClick(x, y);
-	if (!view->hasCollision(x, y)) {
-		tileMatrixPosition = view->tileWalkingToCorrectDirection(x, y);
+	glm::vec2 tileMatrixPosition = diamondView->getRowAndColumnForMousePositionClick(x, y);
+	if (!diamondView->hasCollision(x, y)) {
+		tileMatrixPosition = diamondView->tileWalkingToCorrectDirection(x, y);
 	}
 	if (!this->isValidStep(tileMatrixPosition)) {
 		return glm::vec2();
@@ -105,7 +105,7 @@ glm::vec2 TileMap::onMouseClick(double x, double y) {
 glm::vec2 TileMap::onKeyboardClick(int direction) {
 	int r = this->player->getCurrentTile()->getColumn();
 	int c = this->player->getCurrentTile()->getRow();
-	glm::vec2 values = view->tileWalking(r, c, direction);
+	glm::vec2 values = diamondView->tileWalking(r, c, direction);
 	if (hasCollisionWithProp(values.y, values.x)) {
 		return glm::vec2();
 	}
@@ -154,7 +154,7 @@ void TileMap::changePlayerDirection(glm::vec2 tileMatrixPosition) {
 }
 void TileMap::burnTree(int c, int r) {
 	if (textureMap[r][c] == 21) {
-		AnimatedGameObject* burningTree = new AnimatedGameObject(60, 45, tiles[c][r], "assets/tree-burning1.png");
+		AnimatedGameObject* burningTree = new AnimatedGameObject(60, 45, tiles[c][r]);
 
 		props[c][r] = (GameObject*) burningTree;
 	}

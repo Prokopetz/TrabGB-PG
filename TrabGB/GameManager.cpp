@@ -4,7 +4,6 @@ GameManager::GameManager() {
 	gameOverMenu = new Menu("assets/gameover.jpg");
 	winMenu = new Menu("assets/win.jpg");
 	this->tileMap = new TileMap();
-	hasKey = false;
 }
 
 void GameManager::onGameLoop() {
@@ -53,7 +52,6 @@ void GameManager::restartGame() {
 	this->currentLineBeingTransformed = 15;
 }
 
-
 void GameManager::onMouseClick(int x, int y) {
 	glm::vec2 newPosition = tileMap->onMouseClick(x, y);
 	verifyIfPositionIsKeyPosition(newPosition);
@@ -84,8 +82,6 @@ void GameManager::openPortals() {
 		portal2 = (rand() % 4);
 	} while (portal1 == portal2);
 	
-
-
 	int portal1Positions[2] = { possiblePortals[portal1][0], possiblePortals[portal1][1] };
 
 	int portal2Positions[2] = { possiblePortals[portal2][0], possiblePortals[portal2][1] };

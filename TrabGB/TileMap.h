@@ -10,7 +10,7 @@ class TileMap {
 public:
 	static const int NUMBER_OF_TILES_HORIZONTALLY = 16;
 	static const int NUMBER_OF_TILES_VERTICALLY = 16;
-	DiamondView* view;
+	DiamondView* diamondView;
 	TileMap();
 	~TileMap();
 	void draw();

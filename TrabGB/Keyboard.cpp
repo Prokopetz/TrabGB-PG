@@ -9,14 +9,12 @@ void Keyboard::KeyCallback(GLFWwindow* window, int key, int scancode, int action
 	if (key < 0)
 		return;
 
-	if (action != GLFW_RELEASE && keys[key] == false)
-	{
+	if (action != GLFW_RELEASE && keys[key] == false) {
 		keysDown[key] = true;
 		keysUp[key] = false;
 	}
 
-	if (action == GLFW_RELEASE && keys[key] == true)
-	{
+	if (action == GLFW_RELEASE && keys[key] == true) {
 		keysDown[key] = false;
 		keysUp[key] = true;
 	}
@@ -24,21 +22,8 @@ void Keyboard::KeyCallback(GLFWwindow* window, int key, int scancode, int action
 	keys[key] = action != GLFW_RELEASE;
 }
 
-bool Keyboard::KeyDown(int key)
-{
+bool Keyboard::KeyDown(int key) {
 	bool x = keysDown[key];
 	keysDown[key] = false;
 	return x;
-}
-
-bool Keyboard::KeyUp(int key)
-{
-	bool x = keysUp[key];
-	keysUp[key] = false;
-	return x;
-}
-
-bool Keyboard::Key(int key)
-{
-	return keys[key];
 }

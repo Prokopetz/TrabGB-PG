@@ -18,10 +18,10 @@ void Mouse::MousePosCallback(GLFWwindow* window, double _x, double _y)
 	y = height - _y;
 }
 
-void Mouse::MouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
-{
-	if (button < 0)
+void Mouse::MouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
+	if (button < 0) {
 		return;
+	}
 
 	if (action == GLFW_RELEASE && buttons[button] == true) {
 		buttonsDown[button] = false;
@@ -31,31 +31,16 @@ void Mouse::MouseButtonCallback(GLFWwindow* window, int button, int action, int 
 	buttons[button] = action != GLFW_RELEASE;
 }
 
-double Mouse::GetMouseX()
-{
+double Mouse::GetMouseX() {
 	return x;
 }
 
-double Mouse::GetMouseY()
-{
+double Mouse::GetMouseY() {
 	return y;
 }
 
-bool Mouse::ButtonDown(int button)
-{
-	bool x = buttonsDown[button];
-	buttonsDown[button] = false;
-	return x;
-}
-
-bool Mouse::ButtonUp(int button)
-{
+bool Mouse::ButtonUp(int button) {
 	bool x = buttonsUp[button];
 	buttonsUp[button] = false;
 	return x;
-}
-
-bool Mouse::Button(int button)
-{
-	return buttons[button];
 }

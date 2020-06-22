@@ -1,5 +1,5 @@
 #include "AnimatedGameObject.h"
-AnimatedGameObject::AnimatedGameObject(float height, float width, Tile* currentTile, const char* texturePath) : GameObject(height, width, currentTile, texturePath) {
+AnimatedGameObject::AnimatedGameObject(float height, float width, Tile* currentTile) : GameObject(height, width, currentTile, "assets/tree-burning1.png") {
 	sprite = new Sprite(4);
 	sprite->addFrame(new Texture("assets/tree-burning1.png"));
 	sprite->addFrame(new Texture("assets/tree-burning2.png"));
@@ -31,10 +31,6 @@ void AnimatedGameObject::draw() {
     glDrawArrays(GL_TRIANGLES, 0, 6);
     glBindVertexArray(0);
     texture->unbind();
-}
-
-void AnimatedGameObject::addFrame(Texture* texture) {
-	this->sprite->addFrame(texture);
 }
 
 void AnimatedGameObject::changeCurrentFrame() {
