@@ -1,4 +1,5 @@
 #include "GameManager.h"
+
 GameManager::GameManager() {
 	gameOverMenu = new Menu("assets/gameover.jpg");
 	winMenu = new Menu("assets/win.jpg");
@@ -17,7 +18,7 @@ void GameManager::onGameLoop() {
 	int portal1Positions[2] = { possiblePortals[portal1][0], possiblePortals[portal1][1] };
 	int portal2Positions[2] = { possiblePortals[portal2][0], possiblePortals[portal2][1] };
 
-	if ((tileC == portal1Positions[0] && tileR == portal1Positions[1]) || (tileC == portal2Positions[0] && tileR == portal2Positions[1])) {
+	if (((tileC == portal1Positions[0] && tileR == portal1Positions[1]) || (tileC == portal2Positions[0] && tileR == portal2Positions[1])) && hasKey) {
 		won = true;
 	}
 

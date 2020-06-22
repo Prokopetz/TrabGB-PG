@@ -12,13 +12,12 @@ class GameObject {
 public:
 	GameObject(float height, float width, Tile* currentTile, const char* texturePath);
 	~GameObject();
-	void draw();
+	virtual void draw();
 protected:
 	Texture* texture;
 	Tile* currentTile;
 	Shader* shader;
 	unsigned int vao;
-	int textureId;
 	float posX;
 	float posY;
 	float height;

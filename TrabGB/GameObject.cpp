@@ -49,8 +49,6 @@ GameObject::GameObject(float height, float width, Tile* currentTile, const char*
     shader->use();
 
     shader->setUniform1i("ourTexture", 0);
-
-
 }
 
 void GameObject::draw() {

@@ -9,11 +9,11 @@ int textureMapDefault[16][16] = {
 {21, 10, 21, 21, 21, 10, 21, 21, 21, 10, 21, 21, 21, 21, 10, 21},
 {21, 10, 21, 21, 21, 10, 21, 21, 21, 10, 21, 21, 21, 21, 10, 21},
 {21, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 21, 21, 10, 21},
-{21, 10, 21, 21, 21, 21, 10, 21, 21, 21, 21, 21, 21, 21, 10, 21},
-{21, 10, 21, 21, 21, 21, 10, 10, 10, 21, 21, 21, 21, 30, 30, 30},
-{21, 10, 10, 10, 10, 21, 10, 21, 10, 21, 21, 21, 21, 30, 31, 30},
-{30, 21, 21, 21, 10, 10, 10, 21, 10, 10, 10, 10, 21, 30, 30, 30},
-{10, 21, 21, 21, 10, 21, 10, 21, 21, 21, 21, 21, 21, 21, 10, 21},
+{21, 10, 21, 21, 21, 21, 21, 30, 30, 30, 21, 10, 21, 21, 10, 21},
+{21, 10, 21, 21, 21, 21, 21, 30, 31, 30, 21, 10, 21, 21, 10, 21},
+{21, 10, 10, 10, 10, 21, 21, 30, 30, 30, 21, 10, 21, 21, 21, 21},
+{30, 21, 21, 21, 10, 10, 10, 10, 10, 10, 10, 10, 21, 21, 21, 21},
+{10, 21, 21, 21, 10, 21, 10, 21, 21, 21, 21, 10, 21, 21, 10, 21},
 {10, 21, 21, 21, 10, 21, 10, 21, 21, 21, 21, 10, 10, 10, 10, 10},
 {10, 10, 10, 10, 10, 21, 10, 10, 10, 10, 10, 10, 21, 10, 21, 21},
 {21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 10, 21, 21},
@@ -64,8 +64,8 @@ TileMap::TileMap() {
 			}
 		}
 	}
-	this->keyPosition = glm::vec2(14, 8);
-	props[14][8] = new GameObject(30, 30, tiles[14][8], "assets/key.png");
+	this->keyPosition = glm::vec2(8, 7);
+	props[8][7] = new GameObject(30, 30, tiles[8][7], "assets/key.png");
 	props[6][1] = new GameObject(35, 20, tiles[6][1], "assets/portal_desligado.png");
 	props[0][9] = new GameObject(35, 20, tiles[0][9], "assets/portal_desligado.png");
 	props[14][14] = new GameObject(35, 20, tiles[14][14], "assets/portal_desligado.png");
@@ -154,7 +154,9 @@ void TileMap::changePlayerDirection(glm::vec2 tileMatrixPosition) {
 }
 void TileMap::burnTree(int c, int r) {
 	if (textureMap[r][c] == 21) {
-		props[c][r] = new GameObject(50, 30, tiles[c][r], "assets/burned.png");
+		AnimatedGameObject* burningTree = new AnimatedGameObject(60, 45, tiles[c][r], "assets/tree-burning1.png");
+
+		props[c][r] = (GameObject*) burningTree;
 	}
 }
 

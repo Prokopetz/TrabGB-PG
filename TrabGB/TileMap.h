@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "DiamondView.h"
+#include "AnimatedGameObject.h"
 class TileMap {
 public:
 	static const int NUMBER_OF_TILES_HORIZONTALLY = 16;
